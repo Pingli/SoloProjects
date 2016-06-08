@@ -1,15 +1,18 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿
+using UnityEngine;
 
-public class Player : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
-	
+public class Player : Entity
+{
+	private void Update()
+	{
+		Movement();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+
+	private void Movement()
+	{
+		float hor = Input.GetAxis("Horizontal");
+		float ver = Input.GetAxis("Vertical");
+		MoveHorizontal(hor);
+		MoveVertical(ver);
 	}
 }
