@@ -2,3 +2,5 @@ Isaac/UnityProject/Library/
 Isaac/UnityProject/Temp/
 Isaac/UnityProject/UnityProject.CSharp.csproj
 Isaac/UnityProject/UnityProject.sln
+Isaac/UnityProject/UnityProject.CSharp.Plugins.csproj
+Isaac/UnityProject/UnityProject.CSharp.Editor.csproj

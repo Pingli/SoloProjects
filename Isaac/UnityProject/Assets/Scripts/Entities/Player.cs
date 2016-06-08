@@ -3,6 +3,11 @@ using UnityEngine;
 
 public class Player : Entity
 {
+	private void Start()
+	{
+		
+	}
+	
 	private void Update()
 	{
 		Movement();
