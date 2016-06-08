@@ -8,6 +8,11 @@ public class Entity : MonoBehaviour
 		public float Drag;
 		public float HorizontalSpeed;
 		public float VerticalSpeed;
+
+		public Vector3 GetVelocity()
+		{
+			return new Vector3(HorizontalSpeed, 0, VerticalSpeed);
+		}
 	}
 
 	private MoveSpeed _speedInfo;
@@ -45,5 +50,10 @@ public class Entity : MonoBehaviour
 	protected void MoveHorizontal(float value)
 	{
 		_speedInfo.HorizontalSpeed += value * _speedInfo.AccelerationSpeed;
+	}
+
+	protected Vector3 GetVelocity()
+	{
+		return _speedInfo.GetVelocity();
 	}
 }
