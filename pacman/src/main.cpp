@@ -1,8 +1,4 @@
-
-
 #include <GLFW/glfw3.h>
-//#include <GLFW/glfw3native.h>
-//#include <gl/GL.h>
 #include <cstdio>
 
 void Update(GLFWwindow* window)
@@ -16,7 +12,7 @@ void Update(GLFWwindow* window)
 
 void RenderStuff(GLFWwindow* window)
 {
-	glClearColor(0, 0, 0, 1);
+	glClearColor(1, 0, 0, 1);
 }
 
 int main(void)
@@ -41,14 +37,14 @@ int main(void)
 	glfwMakeContextCurrent(window);
 	//glfwSwapInterval();
 
+	printf(glfwGetVersionString());
 
 
 	/* Loop until the user closes the window */
 	while (!glfwWindowShouldClose(window))
 	{
 		/* Render here */
-		//RenderStuff(window);
-		glClearColor(0, 0, 0, 1);
+		RenderStuff(window);
 
 		/* Swap front and back buffers */
 		glfwSwapBuffers(window);
