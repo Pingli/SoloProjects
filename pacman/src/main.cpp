@@ -1,30 +1,13 @@
 #include <SFML/Graphics.hpp>
 #include "Settings.hpp"
+#include "Game/Game.hpp"
 #include "Entity2D.hpp"
 
-
-bool qwerty = true;
-Entity2D* ent;
-
-void Update()
-{
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && qwerty)
-	{
-		qwerty = false;
-		ent = new Entity2D(ASSET_PATH + "yellow.png");
-	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::F) && !qwerty)
-	{
-		qwerty = true;
-		delete ent;
-		ent = nullptr;
-	}
-}
 
 int main()
 {
 	sf::RenderWindow window(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), WINDOW_TITLE);
-
+	Game game;
 	while (window.isOpen())
 	{
 		sf::Event event;
@@ -40,7 +23,7 @@ int main()
 		Entity2D::DrawSprites(window);
 		window.display();
 
-		Update();
+		game.Update();
 	}
 
 	return 0;
