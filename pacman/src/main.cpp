@@ -1,10 +1,29 @@
 #include <SFML/Graphics.hpp>
+#include "Settings.hpp"
+#include "Entity2D.hpp"
+
+
+bool qwerty = true;
+Entity2D* ent;
+
+void Update()
+{
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && qwerty)
+	{
+		qwerty = false;
+		ent = new Entity2D(ASSET_PATH + "yellow.png");
+	}
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::F) && !qwerty)
+	{
+		qwerty = true;
+		delete ent;
+		ent = nullptr;
+	}
+}
 
 int main()
 {
-	sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
-	sf::CircleShape shape(100.f);
-	shape.setFillColor(sf::Color::Green);
+	sf::RenderWindow window(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), WINDOW_TITLE);
 
 	while (window.isOpen())
 	{
@@ -18,8 +37,10 @@ int main()
 		}
 
 		window.clear();
-		window.draw(shape);
+		Entity2D::DrawSprites(window);
 		window.display();
+
+		Update();
 	}
 
 	return 0;
