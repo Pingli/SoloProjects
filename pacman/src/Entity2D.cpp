@@ -3,52 +3,63 @@
 #include "AssetCache.hpp"
 
 std::vector<sf::Sprite*> Entity2D::sprites;
+std::vector<Entity2D*> Entity2D::entities;
 
-Entity2D::Entity2D()
+Entity2D::Entity2D() : name("")
 {
 	Init();
-}
-
-Entity2D::Entity2D(const std::string filePath)
-{
-	Init();
-	SetTextureFromFile(filePath);
-}
-
-Entity2D::Entity2D(const sf::Texture& texture)
-{
-	Init();
-	SetTexture(texture);
 }
 
 void Entity2D::Init()
 {
 	sprites.push_back(&sprite);
+	entities.push_back(this);
 }
 
 void Entity2D::DrawSprites(sf::RenderWindow& window)
 {
-	for (std::vector<sf::Sprite*>::iterator it = sprites.begin(); it != sprites.end(); ++it)
+	for (auto it = sprites.begin(); it != sprites.end(); ++it)
 	{
-		sf::Sprite& sprite = *(sf::Sprite*)*it;
+		sf::Sprite& sprite = **it;
 		window.draw( sprite );
 	}
 }
 
+void Entity2D::UpdateEntities()
+{
+	for (auto it = entities.begin(); it != entities.end(); ++it)
+	{
+		Entity2D& entity = **it;
+		entity.Update();
+	}
+}
+
+void Entity2D::Update()
+{
+	printf("updating %s\n", name.c_str());
+}
+
 Entity2D::~Entity2D()
 {
-	for (std::vector<sf::Sprite*>::iterator it = sprites.begin(); it != sprites.end(); ++it)
+	for (auto it = sprites.begin(); it != sprites.end(); ++it)
 	{
 		if (*it == &sprite)
 		{
 			sprites.erase(it);
-			printf("removed one\n");
+			break;
+		}
+	}
+	for (auto it = entities.begin(); it != entities.end(); ++it)
+	{
+		if (*it == this)
+		{
+			entities.erase(it);
 			break;
 		}
 	}
 }
 
-void Entity2D::SetTextureFromFile(const std::string filePath)
+void Entity2D::SetTextureFromFile(const std::string& filePath)
 {
 	sf::Texture& texture = AssetCache::GetInstance().AddNewCacheEntry(filePath);
 	texture.loadFromFile(filePath);
