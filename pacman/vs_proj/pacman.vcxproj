@@ -130,13 +130,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\AssetCache.cpp" />
     <ClCompile Include="..\src\Entity2D.cpp" />
+    <ClCompile Include="..\src\Game\Game.cpp" />
+    <ClCompile Include="..\src\Game\Ghost.cpp" />
+    <ClCompile Include="..\src\Game\LevelLoader.cpp" />
+    <ClCompile Include="..\src\Game\Pickup.cpp" />
+    <ClCompile Include="..\src\Game\Player.cpp" />
     <ClCompile Include="..\src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\AssetCache.hpp" />
     <ClInclude Include="..\src\Entity2D.hpp" />
+    <ClInclude Include="..\src\Game\Game.hpp" />
+    <ClInclude Include="..\src\Game\Ghost.hpp" />
+    <ClInclude Include="..\src\Game\LevelLoader.hpp" />
+    <ClInclude Include="..\src\Game\Pickup.hpp" />
+    <ClInclude Include="..\src\Game\Player.hpp" />
     <ClInclude Include="..\src\Settings.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
