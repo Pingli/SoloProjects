@@ -1,6 +1,7 @@
 #include "Entity2D.hpp"
 #include <SFML/Graphics/Texture.hpp>
 #include "AssetCache.hpp"
+#include "Settings.hpp"
 
 std::vector<sf::Sprite*> Entity2D::sprites;
 std::vector<Entity2D*> Entity2D::entities;
@@ -58,10 +59,52 @@ Entity2D::~Entity2D()
 	}
 }
 
+void Entity2D::SetTextureFromSpritesheet(const std::string& filePath, const int tileNumber)
+{
+	sf::Texture& texture = AssetCache::GetInstance().AddNewCacheEntry(filePath);
+	//TODO make nice
+	if (texture.getSize().x == 0)
+	{
+		texture.loadFromFile(filePath);
+		printf("loading new \n");
+	}
+
+	sf::Vector2u size = texture.getSize();
+	sprite.setTexture(texture);
+
+
+	int numberOfColumns = size.x / TILE_WIDTH;
+	int numberOfRows = size.y / TILE_HEIGHT;
+
+	int column = tileNumber % numberOfColumns;
+	int row = (tileNumber ) / numberOfColumns;
+
+	//int numberCopy = tileNumber;
+	//int count = 0;
+	//while (numberCopy > numberOfColumns)
+	//{
+	//	numberCopy -= numberOfColumns;
+	//	count++;
+	//}
+	//row = count;
+
+	sf::IntRect rect;
+	rect.left = column * TILE_WIDTH;
+	rect.top = row * TILE_HEIGHT;
+	rect.width = TILE_WIDTH;
+	rect.height = TILE_HEIGHT;
+	sprite.setTextureRect(rect);
+}
+
 void Entity2D::SetTextureFromFile(const std::string& filePath)
 {
 	sf::Texture& texture = AssetCache::GetInstance().AddNewCacheEntry(filePath);
-	texture.loadFromFile(filePath);
+	//TODO make nice
+	if (texture.getSize().x == 0)
+	{
+		texture.loadFromFile(filePath);
+		printf("loading new \n");
+	}
 
 	SetTexture(texture);
 }
@@ -69,4 +112,9 @@ void Entity2D::SetTextureFromFile(const std::string& filePath)
 void Entity2D::SetTexture(const sf::Texture& texture)
 {
 	sprite.setTexture(texture);
+}
+
+void Entity2D::SetPosition(const float x, const float y)
+{
+	sprite.setPosition(x , y);
 }

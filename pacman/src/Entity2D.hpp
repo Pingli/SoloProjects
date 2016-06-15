@@ -4,6 +4,7 @@
 #include <vector>
 
 
+
 class RenderWindow;
 class Entity2D
 {
@@ -11,8 +12,11 @@ class Entity2D
 		Entity2D();
 		virtual ~Entity2D();
 
+		void SetTextureFromSpritesheet(const std::string& filePath, const int tileNumber);
 		void SetTextureFromFile(const std::string& filePath);
 		void SetTexture(const sf::Texture& texture);
+
+		void SetPosition(const float x, const float y);
 
 		//should probably make private and accesible to friend classes
 		static void DrawSprites(sf::RenderWindow& window);
