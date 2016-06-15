@@ -60,6 +60,7 @@ Entity2D::~Entity2D()
 	}
 }
 
+//TODO add parameter for sprite size (characters are 2x2 tiles instead of 1x1)
 void Entity2D::SetTextureFromSpritesheet(const std::string& filePath, const int tileNumber)
 {
 	sf::Texture& texture = AssetCache::GetInstance().AddNewCacheEntry(filePath);

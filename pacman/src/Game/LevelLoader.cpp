@@ -11,7 +11,6 @@ std::vector<std::vector<std::string>> LevelLoader::LoadLevel(const std::string& 
 {
 	std::vector<std::vector<std::string>> level;
 	FileTo2DVector(filePath, level);
-
 	SpawnLevelObjects(level);
 
 	return level;
@@ -19,6 +18,7 @@ std::vector<std::vector<std::string>> LevelLoader::LoadLevel(const std::string& 
 
 void LevelLoader::SpawnLevelObjects(const std::vector<std::vector<std::string>>& level)
 {
+	//TODO: think about this for more than 2 seconds
 	int i = 0;
 	for (auto vectorIterator = level.begin(); vectorIterator != level.end(); ++vectorIterator)
 	{
@@ -26,17 +26,17 @@ void LevelLoader::SpawnLevelObjects(const std::vector<std::vector<std::string>>&
 		auto rowVector = *vectorIterator;
 		for (auto it = rowVector.begin(); it != rowVector.end(); ++it)
 		{
-			//maybe not that safe?
+			//TODO: reconsider the casting, not very safe?
 			int tileNumber = atoi((*it).c_str());
 			Tile tileEnum = (Tile)tileNumber;
-			//static int count = 0;
-			//intentional memory leak at this point, needs to be moved somewhere else
+
+			//TODO: intentional memory leak at this point, needs to be moved somewhere else
 			Entity2D* ent;
 			ent = new Entity2D();
 			ent->SetTextureFromSpritesheet(SPRITESHEET_PACMAN_FULL_PATH, tileNumber);
 			ent->SetPosition(n * TILE_WIDTH, i * TILE_HEIGHT);
 
-			//tile specific logic here, such as pickup spawning or ghost/player
+			//TODO: tile specific logic here, such as pickup spawning or ghost/player
 			switch (tileEnum)
 			{
 				case Tile::EMPTY:
@@ -50,6 +50,7 @@ void LevelLoader::SpawnLevelObjects(const std::vector<std::vector<std::string>>&
 	}
 }
 
+//TODO: Consider casting to integer here instead of later
 void LevelLoader::FileTo2DVector(const std::string& filePath, std::vector<std::vector<std::string>>& level)
 {
 	std::ifstream myfile(filePath);

@@ -6,10 +6,10 @@
 Game::Game()
 {
 	//set up playing field
+	//TODO: add references for characters, vector pickups
 	LevelLoader::LoadLevel(LEVEL_FULL_PATH);
-	//spawn pickups
-	//spawn ghosts
-	//spawn player
+
+	//TODO: Character class that inherits from entity. Needs a move-l/r/u/d function that deals with collision
 	auto player =  new Entity2D();
 	player->name = "pacman";
 	auto shadow =  new Entity2D();
@@ -31,5 +31,5 @@ void Game::Update()
 	//update entity
 	Entity2D::UpdateEntities();
 	//collision checks?
-
+	//TODO: UI, while at it give credits to this person for the pacman spritesheet. https://github.com/rm-hull/big-bang/tree/master/examples/pacman
 }
