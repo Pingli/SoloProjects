@@ -12,6 +12,7 @@ class Entity2D
 		Entity2D();
 		virtual ~Entity2D();
 
+		sf::Vector2i GetTile() const;
 		void SetTextureFromSpritesheet(const std::string& filePath, const int tileNumber);
 		void SetTextureFromFile(const std::string& filePath);
 		void SetTexture(const sf::Texture& texture);

@@ -60,6 +60,22 @@ Entity2D::~Entity2D()
 	}
 }
 
+sf::Vector2i Entity2D::GetTile() const
+{
+	sf::IntRect rect = sprite.getTextureRect();
+	sf::Vector2f pos = sprite.getPosition();
+	sf::Vector2f center;
+
+	center.x = pos.x + (rect.width / 2);
+	center.y = pos.y + (rect.height / 2);
+
+	//loss of fraction intended
+	int x = center.x / TILE_WIDTH;
+	int y = center.y / TILE_HEIGHT;
+
+	return sf::Vector2i(x, y);
+}
+
 //TODO add parameter for sprite size (characters are 2x2 tiles instead of 1x1)
 void Entity2D::SetTextureFromSpritesheet(const std::string& filePath, const int tileNumber)
 {
