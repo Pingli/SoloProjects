@@ -2,6 +2,7 @@
 #include <SFML/Graphics/Texture.hpp>
 #include "AssetCache.hpp"
 #include "Settings.hpp"
+#include <cassert>
 
 std::vector<sf::Sprite*> Entity2D::sprites;
 std::vector<Entity2D*> Entity2D::entities;
@@ -79,14 +80,8 @@ void Entity2D::SetTextureFromSpritesheet(const std::string& filePath, const int 
 	int column = tileNumber % numberOfColumns;
 	int row = (tileNumber ) / numberOfColumns;
 
-	//int numberCopy = tileNumber;
-	//int count = 0;
-	//while (numberCopy > numberOfColumns)
-	//{
-	//	numberCopy -= numberOfColumns;
-	//	count++;
-	//}
-	//row = count;
+	assert(row < numberOfRows);
+	assert(column < numberOfColumns);
 
 	sf::IntRect rect;
 	rect.left = column * TILE_WIDTH;

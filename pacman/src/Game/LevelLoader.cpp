@@ -32,19 +32,16 @@ void LevelLoader::SpawnLevelObjects(const std::vector<std::vector<std::string>>&
 			//static int count = 0;
 			//intentional memory leak at this point, needs to be moved somewhere else
 			Entity2D* ent;
+			ent = new Entity2D();
+			ent->SetTextureFromSpritesheet(SPRITESHEET_PACMAN_FULL_PATH, tileNumber);
+			ent->SetPosition(n * TILE_WIDTH, i * TILE_HEIGHT);
 
+			//tile specific logic here, such as pickup spawning or ghost/player
 			switch (tileEnum)
 			{
 				case Tile::EMPTY:
 				case Tile::PICKUP:
 				default:
-					ent = new Entity2D();
-					ent->SetTextureFromSpritesheet(SPRITESHEET_PACMAN_FULL_PATH, tileNumber);
-					ent->SetPosition(n * TILE_WIDTH, i * TILE_HEIGHT);
-					break;
-
-					break;
-					//printf("%i is not yet supported, should add it asap.\n", tileEnum);
 					break;
 			}
 			++n;
