@@ -1,9 +1,12 @@
 #include "Game.hpp"
 #include "../Entity2D.hpp"
+#include "LevelLoader.hpp"
+#include "../Settings.hpp"
 
 Game::Game()
 {
 	//set up playing field
+	LevelLoader::LoadLevel(LEVEL_FULL_PATH);
 	//spawn pickups
 	//spawn ghosts
 	//spawn player
@@ -17,6 +20,8 @@ Game::Game()
 	bashful->name = "inky";
 	auto pokey =  new Entity2D();
 	pokey->name = "clide";
+
+
 
 	printf("game init\n");
 }
