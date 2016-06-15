@@ -137,6 +137,7 @@
     <ClCompile Include="..\src\Game\Pickup.cpp" />
     <ClCompile Include="..\src\Game\Player.cpp" />
     <ClCompile Include="..\src\main.cpp" />
+    <ClCompile Include="..\src\Settings.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\AssetCache.hpp" />

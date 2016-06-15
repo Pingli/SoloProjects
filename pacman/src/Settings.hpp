@@ -1,6 +1,12 @@
+#pragma once
 #include <string>
 
-const int SCREEN_WIDTH = 500;
-const int SCREEN_HEIGHT = 500;
-const char* WINDOW_TITLE = "Pacman";
-const std::string ASSET_PATH = "../assets/";
+extern const int SCREEN_WIDTH;
+extern const int SCREEN_HEIGHT;
+extern const char* WINDOW_TITLE;
+extern const std::string ASSET_PATH;
+extern const std::string LEVEL_FILE_NAME;
+extern const std::string LEVEL_FULL_PATH;
+
+
+
