@@ -18,9 +18,9 @@ enum class Tile
 {
 	PICKUP = 16,
 	EMPTY = 160,
-	PACMAN,
-	BLINKY,
-	PINKY,
-	INKY,
-	CLIDE
+	PACMAN = 448,
+	BLINKY = 384, //red
+	PINKY = 512, //pink
+	INKY = 528, //blue
+	CLIDE = 576 //orange
 };
