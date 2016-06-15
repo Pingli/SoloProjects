@@ -5,6 +5,7 @@
 #include <sstream>
 #include "../Settings.hpp"
 #include "../Entity2D.hpp"
+#include "Player.hpp"
 
 
 std::vector<std::vector<int>> LevelLoader::LoadLevel(const std::string& filePath)
@@ -28,21 +29,36 @@ void LevelLoader::SpawnLevelObjects(const std::vector<std::vector<int>>& level)
 		{
 			int tileNumber = *it;
 			Tile tileEnum = (Tile)tileNumber;
-
-			//TODO: intentional memory leak at this point, needs to be moved somewhere else
+			sf::Vector2i dimension(TILE_WIDTH, TILE_HEIGHT);
 			Entity2D* ent;
-			ent = new Entity2D();
-			ent->SetTextureFromSpritesheet(SPRITESHEET_PACMAN_FULL_PATH, tileNumber);
-			ent->SetPosition(n * TILE_WIDTH, i * TILE_HEIGHT);
+
 
 			//TODO: tile specific logic here, such as pickup spawning or ghost/player
 			switch (tileEnum)
 			{
+				case Tile::PACMAN:
+					ent = new Player();
+					dimension *= 2;
+					break;
+				case Tile::BLINKY:
+				case Tile::INKY:
+				case Tile::PINKY:
+				case Tile::CLIDE:
+					ent = new Entity2D();
+					dimension *= 2;
+					break;
+
 				case Tile::EMPTY:
 				case Tile::PICKUP:
 				default:
+					ent = new Entity2D();
+
 					break;
 			}
+
+			//TODO: intentional memory leak at this point, needs to be moved somewhere else
+			ent->SetTextureFromSpritesheet(SPRITESHEET_PACMAN_FULL_PATH, tileNumber, dimension);
+			ent->SetPosition(n * TILE_WIDTH, i * TILE_HEIGHT);
 			++n;
 		}
 		++i;

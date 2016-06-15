@@ -2,6 +2,7 @@
 #include "../Entity2D.hpp"
 #include "LevelLoader.hpp"
 #include "../Settings.hpp"
+#include "Player.hpp"
 
 Game::Game()
 {
@@ -10,15 +11,15 @@ Game::Game()
 	LevelLoader::LoadLevel(LEVEL_FULL_PATH);
 
 	//TODO: Character class that inherits from entity. Needs a move-l/r/u/d function that deals with collision
-	auto player =  new Entity2D();
+	Player* player = new Player();
 	player->name = "pacman";
-	auto shadow =  new Entity2D();
+	auto shadow = new Entity2D();
 	shadow->name = "blinky";
-	auto speedy =  new Entity2D();
+	auto speedy = new Entity2D();
 	speedy->name = "pinky";
-	auto bashful =  new Entity2D();
+	auto bashful = new Entity2D();
 	bashful->name = "inky";
-	auto pokey =  new Entity2D();
+	auto pokey = new Entity2D();
 	pokey->name = "clide";
 
 
