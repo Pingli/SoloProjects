@@ -7,6 +7,7 @@
 int main()
 {
 	sf::RenderWindow window(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), WINDOW_TITLE);
+
 	Game game;
 	while (window.isOpen())
 	{
@@ -19,7 +20,7 @@ int main()
 			}
 		}
 
-		window.clear();
+		window.clear(sf::Color(68, 170, 142));
 		Entity2D::DrawSprites(window);
 		window.display();
 
