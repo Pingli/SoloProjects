@@ -20,7 +20,7 @@ int main()
 			}
 		}
 
-		window.clear(sf::Color(68, 170, 142));
+		window.clear();
 		Entity2D::DrawSprites(window);
 		window.display();
 
