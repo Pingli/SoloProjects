@@ -4,17 +4,38 @@
 #include <vector>
 #include <sstream>
 
-void LevelLoader::LoadLevel()
-{
-	std::string line;
-	std::ifstream myfile("example.txt");
-	std::vector<std::string> file;
 
+
+std::vector<std::vector<std::string>> LevelLoader::LoadLevel(const std::string& filePath)
+{
+	std::vector<std::vector<std::string>> level;
+	FileTo2DVector(filePath, level);
+
+	for (auto vectorIterator = level.begin(); vectorIterator != level.end(); ++vectorIterator)
+	{
+		auto rowVector = *vectorIterator;
+		for (auto it = rowVector.begin(); it != rowVector.end(); ++it)
+		{
+			std::string value = *it;
+			static int count = 0;
+			printf("%i \n", ++count);
+
+
+		}
+	}
+
+	return level;
+}
+
+void LevelLoader::FileTo2DVector(const std::string& filePath, std::vector<std::vector<std::string>>& level)
+{
+	std::ifstream myfile(filePath);
 	if (myfile.is_open())
 	{
+		std::string line;
 		while (getline(myfile, line))
 		{
-			file.push_back(line);
+			level.push_back(Split(line, ','));
 		}
 		myfile.close();
 	}
