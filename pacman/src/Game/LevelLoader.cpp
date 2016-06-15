@@ -7,16 +7,16 @@
 #include "../Entity2D.hpp"
 
 
-std::vector<std::vector<std::string>> LevelLoader::LoadLevel(const std::string& filePath)
+std::vector<std::vector<int>> LevelLoader::LoadLevel(const std::string& filePath)
 {
-	std::vector<std::vector<std::string>> level;
-	FileTo2DVector(filePath, level);
+	std::vector<std::vector<int>> level;
+	FileTo2DVectorInt(filePath, level);
 	SpawnLevelObjects(level);
 
 	return level;
 }
 
-void LevelLoader::SpawnLevelObjects(const std::vector<std::vector<std::string>>& level)
+void LevelLoader::SpawnLevelObjects(const std::vector<std::vector<int>>& level)
 {
 	//TODO: think about this for more than 2 seconds
 	int i = 0;
@@ -26,8 +26,7 @@ void LevelLoader::SpawnLevelObjects(const std::vector<std::vector<std::string>>&
 		auto rowVector = *vectorIterator;
 		for (auto it = rowVector.begin(); it != rowVector.end(); ++it)
 		{
-			//TODO: reconsider the casting, not very safe?
-			int tileNumber = atoi((*it).c_str());
+			int tileNumber = *it;
 			Tile tileEnum = (Tile)tileNumber;
 
 			//TODO: intentional memory leak at this point, needs to be moved somewhere else
@@ -50,8 +49,7 @@ void LevelLoader::SpawnLevelObjects(const std::vector<std::vector<std::string>>&
 	}
 }
 
-//TODO: Consider casting to integer here instead of later
-void LevelLoader::FileTo2DVector(const std::string& filePath, std::vector<std::vector<std::string>>& level)
+void LevelLoader::FileTo2DVectorInt(const std::string& filePath, std::vector<std::vector<int>>& level)
 {
 	std::ifstream myfile(filePath);
 	if (myfile.is_open())
@@ -59,27 +57,26 @@ void LevelLoader::FileTo2DVector(const std::string& filePath, std::vector<std::v
 		std::string line;
 		while (getline(myfile, line))
 		{
-			level.push_back(Split(line, ','));
+			level.push_back(SplitStringToInt(line, ','));
 		}
 		myfile.close();
 	}
 }
 
-std::vector<std::string>& LevelLoader::Split(const std::string& s, char delim, std::vector<std::string>& elems)
+void LevelLoader::SplitStringToInt(const std::string& s, char delim, std::vector<int>& elems)
 {
 	std::stringstream ss(s);
 	std::string item;
 	while (std::getline(ss, item, delim))
 	{
-		elems.push_back(item);
+		//TODO: error checks
+		elems.push_back(atoi(item.c_str()));
 	}
-	return elems;
 }
 
-
-std::vector<std::string> LevelLoader::Split(const std::string& s, char delim)
+std::vector<int> LevelLoader::SplitStringToInt(const std::string& s, char delim)
 {
-	std::vector<std::string> elems;
-	Split(s, delim, elems);
+	std::vector<int> elems;
+	SplitStringToInt(s, delim, elems);
 	return elems;
 }

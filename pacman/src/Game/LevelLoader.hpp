@@ -5,10 +5,10 @@
 class LevelLoader
 {
 	public:
-		static std::vector<std::vector<std::string>> LoadLevel(const std::string& filePath);
+		static std::vector<std::vector<int>> LoadLevel(const std::string& filePath);
 	private:
-		static void FileTo2DVector(const std::string& filePath, std::vector<std::vector<std::string>>& level);
-		static void SpawnLevelObjects(const std::vector<std::vector<std::string>>& level);
-		static std::vector<std::string> Split(const std::string& s, char delim);
-		static std::vector<std::string>& Split(const std::string& s, char delim, std::vector<std::string>& elems);
+		static void FileTo2DVectorInt(const std::string& filePath, std::vector<std::vector<int>>& level);
+		static void SpawnLevelObjects(const std::vector<std::vector<int>>& level);
+		static std::vector<int> SplitStringToInt(const std::string& s, char delim);
+		static void SplitStringToInt(const std::string& s, char delim, std::vector<int>& elems);
 };
