@@ -1,7 +1,7 @@
 #include <SFML/Graphics.hpp>
-#include "Settings.hpp"
 #include "Game/Game.hpp"
 #include "Entity2D.hpp"
+#include "Settings.hpp"
 
 
 int main()

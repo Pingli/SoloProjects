@@ -36,7 +36,6 @@ void Entity2D::UpdateEntities()
 
 void Entity2D::Update()
 {
-	printf("updating %s\n", name.c_str());
 }
 
 Entity2D::~Entity2D()
