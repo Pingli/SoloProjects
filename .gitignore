@@ -13,3 +13,5 @@ pacman/vs_proj/Release/
 pacman/vs_proj/pacman.VC.VC.opendb
 pacman/vs_proj/pacman.VC.db
 pacman/build/
+*.suo
+*.user
