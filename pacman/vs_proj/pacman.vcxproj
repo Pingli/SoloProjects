@@ -113,7 +113,7 @@
       <AdditionalDependencies>flac.lib;freetype.lib;gdi32.lib;jpeg.lib;ogg.lib;openal32.lib;opengl32.lib;sfml-audio-s.lib;sfml-graphics-s.lib;sfml-system-s.lib;sfml-system-s.lib	;sfml-window-s.lib;vorbis.lib;vorbisenc.lib;vorbisfile.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>copy $(ProjectDir)..\Frameworks\SFML-2.3.2\bin\*.dll $(OutDir)</Command>
+      <Command>copy "$(ProjectDir)..\Frameworks\SFML-2.3.2\bin\*.dll" "$(OutDir)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
