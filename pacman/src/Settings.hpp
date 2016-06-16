@@ -19,6 +19,7 @@ extern const std::string SPRITESHEET_PACMAN_FULL_PATH;
 enum class Tile
 {
 	PICKUP = 16,
+	PICKUP_BIG = 20,
 	EMPTY = 160,
 	PACMAN = 448,
 	BLINKY = 384, //red
