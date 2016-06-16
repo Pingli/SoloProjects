@@ -74,13 +74,10 @@ sf::Vector2i Entity2D::GetTile() const
 {
 	sf::IntRect rect = sprite.getTextureRect();
 	sf::Vector2f pos = sprite.getPosition();
-	sf::Vector2i center(0, 0);
 
 	pos.x = pos.x + (rect.width / 2);
 	pos.y = pos.y + (rect.height / 2);
-	center = PositionToTile(pos);
-	printf("get tile: %f, %f\n", center.x, center.y);
-	return center;
+	return PositionToTile(pos);;
 }
 
 void Entity2D::SetTextureFromSpritesheet(const std::string& filePath, const int tileNumber, const sf::Vector2i& dimension)
