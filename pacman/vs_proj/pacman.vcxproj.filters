@@ -45,6 +45,9 @@
     <ClCompile Include="..\src\Game\Character.cpp">
       <Filter>Game</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\Input.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Entity2D.hpp">
@@ -73,6 +76,9 @@
     </ClInclude>
     <ClInclude Include="..\src\Game\Character.hpp">
       <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Input.hpp">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
