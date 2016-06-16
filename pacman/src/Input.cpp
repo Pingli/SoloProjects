@@ -9,10 +9,6 @@ Input::Input()
 	}
 }
 
-Input::~Input()
-{
-}
-
 bool Input::OnKeyDown(sf::Keyboard::Key key) const
 {
 	return keyState[(int)key].triggerEvent == KeyEvent::DOWN;

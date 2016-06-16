@@ -10,7 +10,7 @@ int main()
 	sf::RenderWindow window(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), WINDOW_TITLE);
 
 	Game game;
-	Input input;
+	Input& input = Input::GetInstance();
 	while (window.isOpen())
 	{
 		sf::Event event;

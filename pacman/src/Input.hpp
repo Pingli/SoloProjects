@@ -4,6 +4,21 @@
 
 class Input
 {
+	public:
+		static Input& GetInstance()
+		{
+			static Input* instance = new Input();
+			return *instance;
+		}
+
+		bool OnKey(sf::Keyboard::Key key) const;
+		bool OnKeyDown(sf::Keyboard::Key key) const;
+		bool OnKeyUp(sf::Keyboard::Key key) const;
+
+		void KeyPressedEvent(sf::Keyboard::Key key);
+		void KeyReleasedEvent(sf::Keyboard::Key key);
+		void StepKeyboardState();
+	private:
 		enum class KeyEvent
 		{
 			NOTHING = 0,
@@ -18,17 +33,7 @@ class Input
 			bool usedInCurrentFrame;
 		};
 
-	public:
-		Input();
-		~Input();
-
-		bool OnKey(sf::Keyboard::Key key ) const;
-		bool OnKeyDown(sf::Keyboard::Key key ) const;
-		bool OnKeyUp(sf::Keyboard::Key key ) const;
-
-		void KeyPressedEvent(sf::Keyboard::Key key);
-		void KeyReleasedEvent(sf::Keyboard::Key key);
-		void StepKeyboardState();
 	private:
+		Input();
 		KeyState keyState[sf::Keyboard::KeyCount];
 };
