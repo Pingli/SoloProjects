@@ -1,20 +1,21 @@
 #include "Player.hpp"
+#include "../Input.hpp"
 
 void Player::Update()
 {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+	if (Input::GetInstance().OnKeyDown(sf::Keyboard::A))
 	{
 		MoveLeft();
 	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+	else if (Input::GetInstance().OnKeyDown(sf::Keyboard::D))
 	{
 		MoveRight();
 	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+	else if (Input::GetInstance().OnKeyDown(sf::Keyboard::S))
 	{
 		MoveDown();
 	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+	else if (Input::GetInstance().OnKeyDown(sf::Keyboard::W))
 	{
 		MoveUp();
 	}
