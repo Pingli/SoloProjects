@@ -6,18 +6,24 @@
 #include "../Settings.hpp"
 #include "../Entity2D.hpp"
 #include "Player.hpp"
+#include "Ghost.hpp"
 
 
-std::vector<std::vector<int>> LevelLoader::LoadLevel(const std::string& filePath)
+void LevelLoader::LoadLevel(const std::string& filePath, GameInfo &outInfo)
 {
 	std::vector<std::vector<int>> level;
 	FileTo2DVectorInt(filePath, level);
-	SpawnLevelObjects(level);
-
-	return level;
+	SpawnLevelObjects(level, outInfo);
+	outInfo.level = level;
 }
 
-void LevelLoader::SpawnLevelObjects(const std::vector<std::vector<int>>& level)
+void LevelLoader::do_work(sf::Vector2i tilePosition, int tileNumber, const sf::Vector2i& dimension, Entity2D& ent)
+{
+	ent.SetTextureFromSpritesheet(SPRITESHEET_PACMAN_FULL_PATH, tileNumber, dimension);
+	ent.SetPositionToTile(tilePosition);
+}
+
+void LevelLoader::SpawnLevelObjects(const std::vector<std::vector<int>>& level, GameInfo &outInfo)
 {
 	//TODO: think about this for more than 2 seconds
 	int i = 0;
@@ -37,32 +43,36 @@ void LevelLoader::SpawnLevelObjects(const std::vector<std::vector<int>>& level)
 			switch (tileEnum)
 			{
 				case Tile::PACMAN:
-					ent = new Player();
+					//ent = new Player();
 					dimension *= 2;
+					outInfo.player = std::make_unique<Player>();
+					ent = outInfo.player.get();
 					break;
 				case Tile::BLINKY:
 				case Tile::INKY:
 				case Tile::PINKY:
 				case Tile::CLIDE:
-					ent = new Entity2D();
+					ent = new Ghost();
 					dimension *= 2;
 					break;
 
 				case Tile::EMPTY:
 				case Tile::PICKUP:
+				case Tile::PICKUP_BIG:
+					ent = new Entity2D();
+					break;
 				default:
 					ent = new Entity2D();
-
 					break;
 			}
 
 			//TODO: intentional memory leak at this point, needs to be moved somewhere else
-			ent->SetTextureFromSpritesheet(SPRITESHEET_PACMAN_FULL_PATH, tileNumber, dimension);
-			ent->SetPosition(n * TILE_WIDTH, i * TILE_HEIGHT);
+			do_work(sf::Vector2i(n, i), tileNumber, dimension, *ent);
 			++n;
 		}
 		++i;
 	}
+
 }
 
 void LevelLoader::FileTo2DVectorInt(const std::string& filePath, std::vector<std::vector<int>>& level)
