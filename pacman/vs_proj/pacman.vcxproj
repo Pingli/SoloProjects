@@ -150,6 +150,7 @@
     <ClInclude Include="..\src\Game\LevelLoader.hpp" />
     <ClInclude Include="..\src\Game\Pickup.hpp" />
     <ClInclude Include="..\src\Game\Player.hpp" />
+    <ClInclude Include="..\src\Game\Structs.hpp" />
     <ClInclude Include="..\src\Input.hpp" />
     <ClInclude Include="..\src\Settings.hpp" />
   </ItemGroup>

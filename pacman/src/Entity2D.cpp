@@ -3,6 +3,7 @@
 #include "AssetCache.hpp"
 #include "Settings.hpp"
 #include <cassert>
+#include "Game/Game.hpp"
 
 std::vector<sf::Sprite*> Entity2D::sprites;
 std::vector<Entity2D*> Entity2D::entities;
@@ -37,16 +38,16 @@ void Entity2D::DrawSprites(sf::RenderWindow& window)
 	}
 }
 
-void Entity2D::UpdateEntities()
+void Entity2D::UpdateEntities(const GameInfo& info)
 {
 	for (auto it = entities.begin(); it != entities.end(); ++it)
 	{
 		Entity2D& entity = **it;
-		entity.Update();
+		entity.Update(info);
 	}
 }
 
-void Entity2D::Update()
+void Entity2D::Update(const GameInfo& info)
 {
 }
 

@@ -1,5 +1,5 @@
 #pragma once
-#include "LevelLoader.hpp"
+#include "Structs.hpp"
 
 class Game
 {

@@ -11,8 +11,9 @@ class Character : public Entity2D
 		void MoveRight();
 		void MoveUp();
 		void MoveDown();
+		static bool CanMoveToTile(const GameInfo& info, const sf::Vector2i& tile);
 		bool IsInIntersection();
-		virtual void Update() override;
+		virtual void Update(const GameInfo& info) override;
 	private:
 		int moveDistance = 1;
 };

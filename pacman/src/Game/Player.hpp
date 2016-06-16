@@ -5,6 +5,6 @@
 class Player : public Character
 {
 	protected:
-		virtual void Update() override;
+		virtual void Update(const GameInfo& info) override;
 
 };

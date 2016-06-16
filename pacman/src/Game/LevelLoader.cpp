@@ -7,6 +7,8 @@
 #include "../Entity2D.hpp"
 #include "Player.hpp"
 #include "Ghost.hpp"
+#include <memory>
+#include "Structs.hpp"
 
 
 void LevelLoader::LoadLevel(const std::string& filePath, GameInfo &outInfo)
@@ -17,7 +19,7 @@ void LevelLoader::LoadLevel(const std::string& filePath, GameInfo &outInfo)
 	outInfo.level = level;
 }
 
-void LevelLoader::do_work(sf::Vector2i tilePosition, int tileNumber, const sf::Vector2i& dimension, Entity2D& ent)
+void LevelLoader::SetEntitySpriteAndPosition(sf::Vector2i tilePosition, int tileNumber, const sf::Vector2i& dimension, Entity2D& ent)
 {
 	ent.SetTextureFromSpritesheet(SPRITESHEET_PACMAN_FULL_PATH, tileNumber, dimension);
 	ent.SetPositionToTile(tilePosition);
@@ -25,7 +27,7 @@ void LevelLoader::do_work(sf::Vector2i tilePosition, int tileNumber, const sf::V
 
 void LevelLoader::SpawnLevelObjects(const std::vector<std::vector<int>>& level, GameInfo &outInfo)
 {
-	//TODO: think about this for more than 2 seconds
+	//TODO: think about this loop for more than 2 seconds
 	int i = 0;
 	for (auto vectorIterator = level.begin(); vectorIterator != level.end(); ++vectorIterator)
 	{
@@ -47,6 +49,7 @@ void LevelLoader::SpawnLevelObjects(const std::vector<std::vector<int>>& level, 
 					dimension *= 2;
 					outInfo.player = std::make_unique<Player>();
 					ent = outInfo.player.get();
+					*it = (int)Tile::EMPTY;
 					break;
 				case Tile::BLINKY:
 				case Tile::INKY:
@@ -66,8 +69,7 @@ void LevelLoader::SpawnLevelObjects(const std::vector<std::vector<int>>& level, 
 					break;
 			}
 
-			//TODO: intentional memory leak at this point, needs to be moved somewhere else
-			do_work(sf::Vector2i(n, i), tileNumber, dimension, *ent);
+			SetEntitySpriteAndPosition(sf::Vector2i(n, i), tileNumber, dimension, *ent);
 			++n;
 		}
 		++i;

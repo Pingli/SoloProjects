@@ -1,7 +1,7 @@
 #include "Player.hpp"
 #include "../Input.hpp"
 
-void Player::Update()
+void Player::Update(const GameInfo& info)
 {
 	if (Input::GetInstance().OnKeyDown(sf::Keyboard::A))
 	{

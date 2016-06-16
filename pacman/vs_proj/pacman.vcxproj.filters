@@ -80,5 +80,8 @@
     <ClInclude Include="..\src\Input.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\Game\Structs.hpp">
+      <Filter>Game</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

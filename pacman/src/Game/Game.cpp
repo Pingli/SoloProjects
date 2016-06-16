@@ -15,7 +15,7 @@ Game::Game()
 void Game::Update()
 {
 	//update entity
-	Entity2D::UpdateEntities();
+	Entity2D::UpdateEntities(info);
 	//collision checks?
 	//TODO: UI, while at it give credits to this person for the pacman spritesheet. https://github.com/rm-hull/big-bang/tree/master/examples/pacman
 

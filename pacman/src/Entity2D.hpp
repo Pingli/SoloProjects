@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 
+struct GameInfo;
 class RenderWindow;
 class Entity2D
 {
@@ -20,12 +21,12 @@ class Entity2D
 		void SetPositionToTile(const sf::Vector2i& tile);
 		//should probably make private and accesible to friend classes
 		static void DrawSprites(sf::RenderWindow& window);
-		static void UpdateEntities();
+		static void UpdateEntities(const GameInfo& info);
 
 		sf::Vector2f positionOffset;
 		std::string name;
 	protected:
-		virtual void Update();
+		virtual void Update(const GameInfo& info);
 	private:
 		void Init();
 		static sf::Vector2f TileToPosition(const sf::Vector2i& tile);

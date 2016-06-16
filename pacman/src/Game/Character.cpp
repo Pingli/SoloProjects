@@ -1,5 +1,6 @@
 #include "Character.hpp"
 #include "../Settings.hpp"
+#include "Structs.hpp"
 
 Character::Character()
 {
@@ -35,11 +36,25 @@ void Character::MoveDown()
 	SetPositionToTile(tile);
 }
 
+bool Character::CanMoveToTile(const GameInfo& info, const sf::Vector2i& tile)
+{
+	Tile t = (Tile)info.level[tile.y][tile.x];
+	switch (t)
+	{
+		case Tile::EMPTY:
+		case Tile::PICKUP:
+		case Tile::PICKUP_BIG:
+			return true;
+		default:
+			return false;
+	}
+}
+
 bool Character::IsInIntersection()
 {
 	return false;
 }
 
-void Character::Update()
+void Character::Update(const GameInfo& info)
 {
 }
