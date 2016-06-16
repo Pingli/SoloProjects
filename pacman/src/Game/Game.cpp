@@ -13,6 +13,9 @@ Game::Game()
 	//TODO: Character class that inherits from entity. Needs a move-l/r/u/d function that deals with collision
 	Player* player = new Player();
 	player->name = "pacman";
+	sf::Vector2i dim(TILE_WIDTH * 2, TILE_HEIGHT * 2);
+	player->SetTextureFromSpritesheet(SPRITESHEET_PACMAN_FULL_PATH, (int)Tile::PACMAN, dim);
+
 	auto shadow = new Entity2D();
 	shadow->name = "blinky";
 	auto speedy = new Entity2D();
