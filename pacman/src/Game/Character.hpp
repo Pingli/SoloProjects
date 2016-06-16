@@ -5,6 +5,7 @@
 class Character : public Entity2D
 {
 	public:
+		Character();
 	protected:
 		void MoveLeft();
 		void MoveRight();

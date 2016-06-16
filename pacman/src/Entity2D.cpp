@@ -7,7 +7,7 @@
 std::vector<sf::Sprite*> Entity2D::sprites;
 std::vector<Entity2D*> Entity2D::entities;
 
-Entity2D::Entity2D() : name("")
+Entity2D::Entity2D() : name(""), positionOffset(0.f, 0.f)
 {
 	Init();
 }
@@ -122,12 +122,12 @@ void Entity2D::SetTexture(const sf::Texture& texture)
 
 void Entity2D::SetPosition(const float x, const float y)
 {
-	sprite.setPosition(x , y);
+	sprite.setPosition(sf::Vector2f(x , y));
 }
 
 void Entity2D::SetPosition(const sf::Vector2f& pos)
 {
-	sprite.setPosition(pos);
+	sprite.setPosition(pos + positionOffset);
 }
 
 void Entity2D::SetPositionToTile(const sf::Vector2i& tile)
@@ -135,8 +135,8 @@ void Entity2D::SetPositionToTile(const sf::Vector2i& tile)
 	sf::Vector2f pos = TileToPosition(tile);
 	sf::IntRect rect = sprite.getTextureRect();
 
-	pos.x = pos.x + (rect.width / 2);
-	pos.y = pos.y + (rect.height / 2);
+	pos.x = pos.x - (rect.width / 2);
+	pos.y = pos.y - (rect.height / 2);
 
-	sprite.setPosition(pos);
+	SetPosition(pos);
 }

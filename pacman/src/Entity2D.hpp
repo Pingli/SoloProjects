@@ -22,6 +22,7 @@ class Entity2D
 		static void DrawSprites(sf::RenderWindow& window);
 		static void UpdateEntities();
 
+		sf::Vector2f positionOffset;
 		std::string name;
 	protected:
 		virtual void Update();

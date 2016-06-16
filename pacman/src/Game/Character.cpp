@@ -1,4 +1,11 @@
 #include "Character.hpp"
+#include "../Settings.hpp"
+
+Character::Character()
+{
+	positionOffset.x = TILE_WIDTH / 2;
+	positionOffset.y = TILE_HEIGHT / 2;
+}
 
 void Character::MoveLeft()
 {
