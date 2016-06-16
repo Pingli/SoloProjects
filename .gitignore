@@ -15,3 +15,5 @@ pacman/vs_proj/pacman.VC.db
 pacman/build/
 *.suo
 *.user
+*.opensdf
+*.sdf
