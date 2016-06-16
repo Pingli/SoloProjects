@@ -3,6 +3,8 @@
 
 extern const int LEVEL_WIDTH_COUNT;
 extern const int LEVEL_HEIGHT_COUNT;
+extern const int VIDEO_WIDTH;
+extern const int VIDEO_HEIGHT;
 extern const int SCREEN_WIDTH;
 extern const int SCREEN_HEIGHT;
 extern const int TILE_WIDTH;

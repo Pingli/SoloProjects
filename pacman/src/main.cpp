@@ -7,7 +7,10 @@
 
 int main()
 {
-	sf::RenderWindow window(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), WINDOW_TITLE);
+	sf::RenderWindow window(sf::VideoMode(VIDEO_WIDTH, VIDEO_HEIGHT), WINDOW_TITLE);
+	window.setSize(sf::Vector2u(SCREEN_WIDTH, SCREEN_HEIGHT));
+	auto mode = sf::VideoMode::getDesktopMode();
+	window.setPosition(sf::Vector2i((mode.width - SCREEN_WIDTH) / 2, (mode.height - SCREEN_HEIGHT) / 2));
 
 	Game game;
 	Input& input = Input::GetInstance();

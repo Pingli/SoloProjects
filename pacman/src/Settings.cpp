@@ -3,8 +3,10 @@
 
 extern const int LEVEL_WIDTH_COUNT = 28;
 extern const int LEVEL_HEIGHT_COUNT = 31;
-extern const int SCREEN_WIDTH = TILE_WIDTH * LEVEL_WIDTH_COUNT;
-extern const int SCREEN_HEIGHT = TILE_HEIGHT * LEVEL_HEIGHT_COUNT;
+extern const int VIDEO_WIDTH = TILE_WIDTH * LEVEL_WIDTH_COUNT;
+extern const int VIDEO_HEIGHT = TILE_HEIGHT * LEVEL_HEIGHT_COUNT;
+extern const int SCREEN_WIDTH = VIDEO_WIDTH * 2;
+extern const int SCREEN_HEIGHT = VIDEO_HEIGHT * 2;
 extern const int TILE_WIDTH = 6;
 extern const int TILE_HEIGHT = 6;
 extern const char* WINDOW_TITLE = "Pacman";
