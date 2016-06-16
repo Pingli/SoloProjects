@@ -2,30 +2,30 @@
 
 void Character::MoveLeft()
 {
-	sf::Vector2f tile = GetTile();
-	tile.x -= 1;
-	SetPosition(tile);
+	sf::Vector2i tile = GetTile();
+	tile.x -= moveDistance;
+	SetPositionToTile(tile);
 }
 
 void Character::MoveRight()
 {
-	sf::Vector2f tile = GetTile();
-	tile.x += 1;
-	SetPosition(tile);
+	sf::Vector2i tile = GetTile();
+	tile.x += moveDistance;
+	SetPositionToTile(tile);
 }
 
 void Character::MoveUp()
 {
-	sf::Vector2f tile = GetTile();
-	tile.y -= 1;
-	SetPosition(tile);
+	sf::Vector2i tile = GetTile();
+	tile.y -= moveDistance;
+	SetPositionToTile(tile);
 }
 
 void Character::MoveDown()
 {
-	sf::Vector2f tile = GetTile();
-	tile.y += 1;
-	SetPosition(tile);
+	sf::Vector2i tile = GetTile();
+	tile.y += moveDistance;
+	SetPositionToTile(tile);
 }
 
 bool Character::IsInIntersection()

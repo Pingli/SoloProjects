@@ -12,4 +12,6 @@ class Character : public Entity2D
 		void MoveDown();
 		bool IsInIntersection();
 		virtual void Update() override;
+	private:
+		int moveDistance = 1;
 };

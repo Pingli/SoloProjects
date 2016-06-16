@@ -18,14 +18,14 @@ void Entity2D::Init()
 	entities.push_back(this);
 }
 
-sf::Vector2f Entity2D::TileToPosition(const sf::Vector2f& tile)
+sf::Vector2f Entity2D::TileToPosition(const sf::Vector2i& tile)
 {
 	return sf::Vector2f(tile.x * TILE_WIDTH, tile.y * TILE_HEIGHT);
 }
 
-sf::Vector2f Entity2D::PositionToTile(const sf::Vector2f& position)
+sf::Vector2i Entity2D::PositionToTile(const sf::Vector2f& position)
 {
-	return sf::Vector2f(floorf(position.x / TILE_WIDTH), floorf(position.y / TILE_HEIGHT));
+	return sf::Vector2i(position.x / TILE_WIDTH, position.y / TILE_HEIGHT);
 }
 
 void Entity2D::DrawSprites(sf::RenderWindow& window)
@@ -70,26 +70,26 @@ Entity2D::~Entity2D()
 	}
 }
 
-sf::Vector2f Entity2D::GetTile() const
+sf::Vector2i Entity2D::GetTile() const
 {
 	sf::IntRect rect = sprite.getTextureRect();
 	sf::Vector2f pos = sprite.getPosition();
-	sf::Vector2f center;
+	sf::Vector2i center(0, 0);
 
-	center.x = pos.x + (rect.width / 2);
-	center.y = pos.y + (rect.height / 2);
-
-	return PositionToTile(center);
+	pos.x = pos.x + (rect.width / 2);
+	pos.y = pos.y + (rect.height / 2);
+	center = PositionToTile(pos);
+	printf("get tile: %f, %f\n", center.x, center.y);
+	return center;
 }
 
-//TODO add parameter for sprite size (characters are 2x2 tiles instead of 1x1)
 void Entity2D::SetTextureFromSpritesheet(const std::string& filePath, const int tileNumber, const sf::Vector2i& dimension)
 {
 	SetTextureFromFile(filePath);
 
 	sf::Vector2u size = sprite.getTexture()->getSize();
-	int numberOfColumns = size.x / dimension.x;
-	int numberOfRows = size.y / dimension.y;
+	int numberOfColumns = size.x / TILE_WIDTH;
+	int numberOfRows = size.y / TILE_HEIGHT;
 
 	int column = tileNumber % numberOfColumns;
 	int row = (tileNumber ) / numberOfColumns;
@@ -100,8 +100,8 @@ void Entity2D::SetTextureFromSpritesheet(const std::string& filePath, const int 
 	sf::IntRect rect;
 	rect.left = column * TILE_WIDTH;
 	rect.top = row * TILE_HEIGHT;
-	rect.width = TILE_WIDTH;
-	rect.height = TILE_HEIGHT;
+	rect.width = dimension.x;
+	rect.height = dimension.y;
 	sprite.setTextureRect(rect);
 }
 
@@ -130,5 +130,16 @@ void Entity2D::SetPosition(const float x, const float y)
 
 void Entity2D::SetPosition(const sf::Vector2f& pos)
 {
+	sprite.setPosition(pos);
+}
+
+void Entity2D::SetPositionToTile(const sf::Vector2i& tile)
+{
+	sf::Vector2f pos = TileToPosition(tile);
+	sf::IntRect rect = sprite.getTextureRect();
+
+	pos.x = pos.x + (rect.width / 2);
+	pos.y = pos.y + (rect.height / 2);
+
 	sprite.setPosition(pos);
 }
