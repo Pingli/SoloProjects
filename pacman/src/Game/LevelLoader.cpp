@@ -25,7 +25,7 @@ void LevelLoader::SetEntitySpriteAndPosition(sf::Vector2i tilePosition, int tile
 	ent.SetPositionToTile(tilePosition);
 }
 
-void LevelLoader::SpawnLevelObjects(const std::vector<std::vector<int>>& level, GameInfo &outInfo)
+void LevelLoader::SpawnLevelObjects(std::vector<std::vector<int>>& level, GameInfo &outInfo)
 {
 	//TODO: think about this loop for more than 2 seconds
 	int i = 0;
@@ -45,11 +45,10 @@ void LevelLoader::SpawnLevelObjects(const std::vector<std::vector<int>>& level, 
 			switch (tileEnum)
 			{
 				case Tile::PACMAN:
-					//ent = new Player();
 					dimension *= 2;
 					outInfo.player = std::make_unique<Player>();
 					ent = outInfo.player.get();
-					*it = (int)Tile::EMPTY;
+					level[i][n] = (int)Tile::EMPTY;
 					break;
 				case Tile::BLINKY:
 				case Tile::INKY:

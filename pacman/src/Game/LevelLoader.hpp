@@ -13,7 +13,7 @@ class LevelLoader
 		static void SetEntitySpriteAndPosition(sf::Vector2i tilePosition, int tileNumber, const sf::Vector2i& dimension, Entity2D& ent);
 	private:
 		static void FileTo2DVectorInt(const std::string& filePath, std::vector<std::vector<int>>& level);
-		static void SpawnLevelObjects(const std::vector<std::vector<int>>& level, GameInfo &outInfo);
+		static void SpawnLevelObjects(std::vector<std::vector<int>>& level, GameInfo &outInfo);
 		static std::vector<int> SplitStringToInt(const std::string& s, char delim);
 		static void SplitStringToInt(const std::string& s, char delim, std::vector<int>& elems);
 };

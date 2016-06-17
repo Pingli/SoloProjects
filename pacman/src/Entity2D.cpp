@@ -8,7 +8,7 @@
 std::vector<sf::Sprite*> Entity2D::sprites;
 std::vector<Entity2D*> Entity2D::entities;
 
-Entity2D::Entity2D() : name(""), positionOffset(0.f, 0.f)
+Entity2D::Entity2D() : positionOffset(0.f, 0.f), name("")
 {
 	Init();
 }
@@ -34,7 +34,7 @@ void Entity2D::DrawSprites(sf::RenderWindow& window)
 	for (auto it = sprites.begin(); it != sprites.end(); ++it)
 	{
 		sf::Sprite& sprite = **it;
-		window.draw( sprite );
+		window.draw(sprite);
 	}
 }
 
