@@ -14,15 +14,10 @@ class Character : public Entity2D
 		Character();
 		void MoveDirection(GameInfo & info, const sf::Vector2i &direction);
 	protected:
-		void MoveLeft();
-		void MoveRight();
-		void MoveUp();
-		void MoveDown();
 		static bool CanMoveToTile(const GameInfo& info, const sf::Vector2i& tile);
 		static bool CanMoveToTile(const GameInfo& info, const sf::Vector2i& tile, int& outTile);
 		bool IsInIntersection();
 		virtual void Update(GameInfo& info) override;
 		void MovedOnPickup(const sf::Vector2i& tile);
 		int moveDistance = 1;
-	private:
 };
