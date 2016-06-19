@@ -13,12 +13,20 @@ Game::Game()
 
 void Game::Update()
 {
-	//update entity
-	Entity2D::UpdateEntities(info);
 	//collision checks?
 	//TODO: UI, while at it give credits to this person for the pacman spritesheet. https://github.com/rm-hull/big-bang/tree/master/examples/pacman
 
 
+	UpdateGhosts();
+	info.player->Update(info);
+}
+
+void Game::UpdateGhosts()
+{
+	for (auto it = info.ghosts.begin(); it != info.ghosts.end(); ++it)
+	{
+		(*it)->Update(info);
+	}
 }
 
 void Game::DrawSprites(sf::RenderWindow& window)

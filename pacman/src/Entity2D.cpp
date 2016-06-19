@@ -5,17 +5,10 @@
 #include <cassert>
 #include "Game/Game.hpp"
 
-std::vector<Entity2D*> Entity2D::entities;
+
 
 Entity2D::Entity2D() : positionOffset(3.f, 3.f), name("")
 {
-	Init();
-}
-
-void Entity2D::Init()
-{
-	entities.push_back(this);
-	printf("init entity\n");
 }
 
 sf::Vector2f Entity2D::TileToPosition(const sf::Vector2i& tile)
@@ -28,31 +21,12 @@ sf::Vector2i Entity2D::PositionToTile(const sf::Vector2f& position)
 	return sf::Vector2i(position.x / TILE_WIDTH, position.y / TILE_HEIGHT);
 }
 
-void Entity2D::UpdateEntities(GameInfo& info)
-{
-	for (auto it = entities.begin(); it != entities.end(); ++it)
-	{
-		Entity2D& entity = **it;
-		entity.Update(info);
-	}
-}
-
 void Entity2D::Update(GameInfo& info)
 {
 }
 
 Entity2D::~Entity2D()
 {
-	for (auto it = entities.begin(); it != entities.end(); ++it)
-	{
-		if (*it == this)
-		{
-			entities.erase(it);
-			break;
-		}
-	}
-
-	printf("destroy entity \n");
 }
 
 sf::Vector2i Entity2D::GetCurrentTilePosition() const
@@ -70,7 +44,7 @@ const sf::Sprite& Entity2D::GetSprite() const
 	return sprite;
 }
 
-void Entity2D::SetTextureRectPosition(const int tileNumber, sf::IntRect& rect)
+void Entity2D::SetTextureRectPosition(const int tileNumber, sf::IntRect& rect) const
 {
 	sf::Vector2u size = sprite.getTexture()->getSize();
 	int numberOfColumns = size.x / TILE_WIDTH;

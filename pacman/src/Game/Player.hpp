@@ -4,8 +4,9 @@
 
 class Player : public Character
 {
+	public:
+		virtual void Update(GameInfo& info) override;
 	protected:
 		void PlayerInput(GameInfo& info);
-		virtual void Update(GameInfo& info) override;
 
 };

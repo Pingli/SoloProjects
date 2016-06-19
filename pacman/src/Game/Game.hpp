@@ -6,6 +6,7 @@ class Game
 {
 	public:
 		Game();
+		void UpdateGhosts();
 		void Update();
 		void DrawBackgroundAndWalls(sf::RenderWindow& window);
 		void DrawGhosts(sf::RenderWindow& window);
