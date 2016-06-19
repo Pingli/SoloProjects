@@ -70,23 +70,36 @@ const sf::Sprite& Entity2D::GetSprite() const
 	return sprite;
 }
 
-void Entity2D::SetTextureFromSpritesheet(const std::string& filePath, const int tileNumber, const sf::Vector2i& dimension)
+void Entity2D::SetTextureRectPosition(const int tileNumber, sf::IntRect& rect)
 {
-	SetTextureFromFile(filePath);
-
 	sf::Vector2u size = sprite.getTexture()->getSize();
 	int numberOfColumns = size.x / TILE_WIDTH;
 	int numberOfRows = size.y / TILE_HEIGHT;
-
 	int column = tileNumber % numberOfColumns;
-	int row = (tileNumber ) / numberOfColumns;
+	int row = (tileNumber) / numberOfColumns;
 
 	assert(row < numberOfRows);
 	assert(column < numberOfColumns);
 
-	sf::IntRect rect;
+	rect = sprite.getTextureRect();
 	rect.left = column * TILE_WIDTH;
 	rect.top = row * TILE_HEIGHT;
+}
+
+void Entity2D::SetSpriteNumber(const int tileNumber)
+{
+	sf::IntRect rect;
+	SetTextureRectPosition(tileNumber, rect);
+	sprite.setTextureRect(rect);
+}
+
+void Entity2D::SetTextureFromSpritesheet(const std::string& filePath, const int tileNumber, const sf::Vector2i& dimension)
+{
+	SetTextureFromFile(filePath);
+	sf::Vector2u size = sprite.getTexture()->getSize();
+	sf::IntRect rect;
+
+	SetTextureRectPosition(tileNumber, rect);
 	rect.width = dimension.x;
 	rect.height = dimension.y;
 	sprite.setTextureRect(rect);

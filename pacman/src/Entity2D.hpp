@@ -13,6 +13,8 @@ class Entity2D
 
 		sf::Vector2i GetCurrentTilePosition() const;
 		const sf::Sprite& GetSprite() const;
+		void SetTextureRectPosition(const int tileNumber, sf::IntRect& rect);
+		void SetSpriteNumber(const int tileNumber);
 		void SetTextureFromSpritesheet(const std::string& filePath, const int tileNumber, const sf::Vector2i& dimension);
 		void SetTextureFromFile(const std::string& filePath);
 		void SetTexture(const sf::Texture& texture);
