@@ -17,6 +17,7 @@ void Entity2D::Init()
 {
 	sprites.push_back(&sprite);
 	entities.push_back(this);
+	printf("init entity\n");
 }
 
 sf::Vector2f Entity2D::TileToPosition(const sf::Vector2i& tile)
@@ -38,7 +39,7 @@ void Entity2D::DrawSprites(sf::RenderWindow& window)
 	}
 }
 
-void Entity2D::UpdateEntities(const GameInfo& info)
+void Entity2D::UpdateEntities(GameInfo& info)
 {
 	for (auto it = entities.begin(); it != entities.end(); ++it)
 	{
@@ -47,7 +48,7 @@ void Entity2D::UpdateEntities(const GameInfo& info)
 	}
 }
 
-void Entity2D::Update(const GameInfo& info)
+void Entity2D::Update(GameInfo& info)
 {
 }
 
@@ -69,9 +70,11 @@ Entity2D::~Entity2D()
 			break;
 		}
 	}
+
+	printf("destroy entity \n");
 }
 
-sf::Vector2i Entity2D::GetTile() const
+sf::Vector2i Entity2D::GetCurrentTilePosition() const
 {
 	sf::IntRect rect = sprite.getTextureRect();
 	sf::Vector2f pos = sprite.getPosition();
@@ -110,7 +113,7 @@ void Entity2D::SetTextureFromFile(const std::string& filePath)
 	if (texture.getSize().x == 0)
 	{
 		texture.loadFromFile(filePath);
-		printf("loading new \n");
+		printf("loading new texture \n");
 	}
 
 	SetTexture(texture);

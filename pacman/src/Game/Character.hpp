@@ -12,7 +12,7 @@ class Character : public Entity2D
 {
 	public:
 		Character();
-		void Move(const GameInfo &info, const sf::Vector2i &direction);
+		void MoveDirection(GameInfo & info, const sf::Vector2i &direction);
 	protected:
 		void MoveLeft();
 		void MoveRight();
@@ -21,8 +21,8 @@ class Character : public Entity2D
 		static bool CanMoveToTile(const GameInfo& info, const sf::Vector2i& tile);
 		static bool CanMoveToTile(const GameInfo& info, const sf::Vector2i& tile, int& outTile);
 		bool IsInIntersection();
-		virtual void Update(const GameInfo& info) override;
-
+		virtual void Update(GameInfo& info) override;
+		void MovedOnPickup(const sf::Vector2i& tile);
 		int moveDistance = 1;
 	private:
 };

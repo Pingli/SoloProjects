@@ -9,42 +9,11 @@ Character::Character()
 	positionOffset.y = TILE_HEIGHT / 2;
 }
 
-void Character::Move(const GameInfo &info, const sf::Vector2i &direction)
+void Character::MoveDirection(GameInfo & info, const sf::Vector2i &direction)
 {
 	assert(abs(direction.x) + abs(direction.y) <= 1);
-	sf::Vector2i tile = GetTile();
+	sf::Vector2i tile = GetCurrentTilePosition();
 	tile += direction;
-	if (CanMoveToTile(info, tile))
-	{
-		SetPositionToTile(tile);
-	}
-}
-
-void Character::MoveLeft()
-{
-	sf::Vector2i tile = GetTile();
-	tile.x -= moveDistance;
-	SetPositionToTile(tile);
-}
-
-void Character::MoveRight()
-{
-	sf::Vector2i tile = GetTile();
-	tile.x += moveDistance;
-	SetPositionToTile(tile);
-}
-
-void Character::MoveUp()
-{
-	sf::Vector2i tile = GetTile();
-	tile.y -= moveDistance;
-	SetPositionToTile(tile);
-}
-
-void Character::MoveDown()
-{
-	sf::Vector2i tile = GetTile();
-	tile.y += moveDistance;
 	SetPositionToTile(tile);
 }
 
@@ -76,6 +45,11 @@ bool Character::IsInIntersection()
 	return false;
 }
 
-void Character::Update(const GameInfo& info)
+void Character::Update(GameInfo& info)
 {
+}
+
+void Character::MovedOnPickup(const sf::Vector2i& tile)
+{
+
 }
