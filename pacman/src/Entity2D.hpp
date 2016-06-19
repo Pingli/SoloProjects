@@ -12,6 +12,7 @@ class Entity2D
 		virtual ~Entity2D();
 
 		sf::Vector2i GetCurrentTilePosition() const;
+		const sf::Sprite& GetSprite() const;
 		void SetTextureFromSpritesheet(const std::string& filePath, const int tileNumber, const sf::Vector2i& dimension);
 		void SetTextureFromFile(const std::string& filePath);
 		void SetTexture(const sf::Texture& texture);
@@ -20,7 +21,6 @@ class Entity2D
 		void SetPosition(const sf::Vector2f& pos);
 		void SetPositionToTile(const sf::Vector2i& tile);
 		//should probably make private and accesible to friend classes
-		static void DrawSprites(sf::RenderWindow& window);
 		static void UpdateEntities(GameInfo& info);
 
 		sf::Vector2f positionOffset;
@@ -33,6 +33,5 @@ class Entity2D
 		static sf::Vector2i PositionToTile(const sf::Vector2f& position);
 
 		sf::Sprite sprite;
-		static std::vector<sf::Sprite*> sprites;
 		static std::vector<Entity2D*> entities;
 };

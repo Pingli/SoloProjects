@@ -2,12 +2,14 @@
 
 #include <memory>
 #include <vector>
+#include "../Entity2D.hpp"
+#include "Ghost.hpp"
 
-class Entity2D;
 struct GameInfo
 {
-	//TODO: clean up ghosts and level
 	std::vector<std::vector<int>> level;
+	//walls, pickups and empty tiles
+	std::vector<std::vector<std::unique_ptr<Entity2D>>> levelEntities;
 	std::unique_ptr<Entity2D> player;
-	Entity2D* ghosts[4];
+	std::vector<std::unique_ptr<Ghost>> ghosts;
 };

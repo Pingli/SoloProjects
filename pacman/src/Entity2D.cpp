@@ -5,17 +5,15 @@
 #include <cassert>
 #include "Game/Game.hpp"
 
-std::vector<sf::Sprite*> Entity2D::sprites;
 std::vector<Entity2D*> Entity2D::entities;
 
-Entity2D::Entity2D() : positionOffset(0.f, 0.f), name("")
+Entity2D::Entity2D() : positionOffset(3.f, 3.f), name("")
 {
 	Init();
 }
 
 void Entity2D::Init()
 {
-	sprites.push_back(&sprite);
 	entities.push_back(this);
 	printf("init entity\n");
 }
@@ -28,15 +26,6 @@ sf::Vector2f Entity2D::TileToPosition(const sf::Vector2i& tile)
 sf::Vector2i Entity2D::PositionToTile(const sf::Vector2f& position)
 {
 	return sf::Vector2i(position.x / TILE_WIDTH, position.y / TILE_HEIGHT);
-}
-
-void Entity2D::DrawSprites(sf::RenderWindow& window)
-{
-	for (auto it = sprites.begin(); it != sprites.end(); ++it)
-	{
-		sf::Sprite& sprite = **it;
-		window.draw(sprite);
-	}
 }
 
 void Entity2D::UpdateEntities(GameInfo& info)
@@ -54,14 +43,6 @@ void Entity2D::Update(GameInfo& info)
 
 Entity2D::~Entity2D()
 {
-	for (auto it = sprites.begin(); it != sprites.end(); ++it)
-	{
-		if (*it == &sprite)
-		{
-			sprites.erase(it);
-			break;
-		}
-	}
 	for (auto it = entities.begin(); it != entities.end(); ++it)
 	{
 		if (*it == this)
@@ -82,6 +63,11 @@ sf::Vector2i Entity2D::GetCurrentTilePosition() const
 	pos.x = pos.x + (rect.width / 2);
 	pos.y = pos.y + (rect.height / 2);
 	return PositionToTile(pos);;
+}
+
+const sf::Sprite& Entity2D::GetSprite() const
+{
+	return sprite;
 }
 
 void Entity2D::SetTextureFromSpritesheet(const std::string& filePath, const int tileNumber, const sf::Vector2i& dimension)

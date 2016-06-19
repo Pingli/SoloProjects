@@ -1,6 +1,5 @@
 #include <SFML/Graphics.hpp>
 #include "Game/Game.hpp"
-#include "Entity2D.hpp"
 #include "Settings.hpp"
 #include "Input.hpp"
 
@@ -34,7 +33,7 @@ int main()
 		}
 
 		window.clear();
-		Entity2D::DrawSprites(window);
+		game.DrawSprites(window);
 		window.display();
 		game.Update();
 		input.StepKeyboardState();

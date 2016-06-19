@@ -9,6 +9,7 @@
 #include "Ghost.hpp"
 #include <memory>
 #include "Structs.hpp"
+#include <cassert>
 
 
 void LevelLoader::LoadLevel(const std::string& filePath, GameInfo &outInfo)
@@ -27,53 +28,76 @@ void LevelLoader::SetEntitySpriteAndPosition(sf::Vector2i tilePosition, int tile
 
 void LevelLoader::SpawnLevelObjects(std::vector<std::vector<int>>& level, GameInfo &outInfo)
 {
+	assert(outInfo.levelEntities.size() == 0);
+
 	//TODO: think about this loop for more than 2 seconds
 	int i = 0;
 	for (auto vectorIterator = level.begin(); vectorIterator != level.end(); ++vectorIterator)
 	{
 		int n = 0;
 		auto rowVector = *vectorIterator;
+		outInfo.levelEntities.emplace_back();
+		//std::vector<std::unique_ptr<Entity2D>>& rowEntitiesVector = levelEntities[i];
+
 		for (auto it = rowVector.begin(); it != rowVector.end(); ++it)
 		{
 			int tileNumber = *it;
 			Tile tileEnum = (Tile)tileNumber;
-			sf::Vector2i dimension(TILE_WIDTH, TILE_HEIGHT);
-			Entity2D* ent;
 
+			outInfo.levelEntities[i].emplace_back(std::make_unique<Entity2D>());
+			Entity2D& levelEntity = *outInfo.levelEntities[i][n];
 
 			//TODO: tile specific logic here, such as pickup spawning or ghost/player
 			switch (tileEnum)
 			{
 				case Tile::PACMAN:
-					dimension *= 2;
-					outInfo.player = std::make_unique<Player>();
-					ent = outInfo.player.get();
+					SetSprite1x1(levelEntity, i, n, Tile::EMPTY);
 					level[i][n] = (int)Tile::EMPTY;
+					outInfo.player = std::make_unique<Player>();
+					SetSprite2x2(*outInfo.player, i, n, tileEnum);
 					break;
 				case Tile::BLINKY:
 				case Tile::INKY:
 				case Tile::PINKY:
 				case Tile::CLIDE:
-					ent = new Ghost();
-					dimension *= 2;
-					break;
+				{
+					SetSprite1x1(levelEntity, i, n, Tile::EMPTY);
+					level[i][n] = (int)Tile::EMPTY;
 
-				case Tile::EMPTY:
+					outInfo.ghosts.emplace_back(std::make_unique<Ghost>());
+					Ghost& ghost = *outInfo.ghosts.back();
+					SetSprite2x2(ghost, i, n, tileEnum);
+					break;
+				}
 				case Tile::PICKUP:
 				case Tile::PICKUP_BIG:
-					ent = new Entity2D();
+					SetSprite1x1(levelEntity, i, n, tileEnum);
+					level[i][n] = tileNumber;
 					break;
+				case Tile::EMPTY:
 				default:
-					ent = new Entity2D();
+					SetSprite1x1(levelEntity, i, n, tileEnum);
+					level[i][n] = tileNumber;
 					break;
 			}
 
-			SetEntitySpriteAndPosition(sf::Vector2i(n, i), tileNumber, dimension, *ent);
+			//auto a = *levelEntities[i][n];
+
 			++n;
 		}
 		++i;
 	}
 
+}
+
+void LevelLoader::SetSprite1x1(Entity2D& entity, int row, int col, Tile tile)
+{
+	SetEntitySpriteAndPosition(sf::Vector2i(col, row), (int)tile, sf::Vector2i(TILE_WIDTH, TILE_HEIGHT), entity);
+}
+
+void LevelLoader::SetSprite2x2(Entity2D& entity, int row, int col, Tile tile)
+{
+	SetEntitySpriteAndPosition(sf::Vector2i(col, row), (int)tile, sf::Vector2i(TILE_WIDTH * 2, TILE_HEIGHT * 2), entity);
 }
 
 void LevelLoader::FileTo2DVectorInt(const std::string& filePath, std::vector<std::vector<int>>& level)
