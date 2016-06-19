@@ -1,6 +1,5 @@
 #pragma once
 #include "Structs.hpp"
-#include "../ObjectPool.hpp"
 #include <SFML/Graphics/RenderWindow.hpp>
 
 class Game

@@ -30,14 +30,13 @@ void LevelLoader::SpawnLevelObjects(std::vector<std::vector<int>>& level, GameIn
 {
 	assert(outInfo.levelEntities.size() == 0);
 
-	//TODO: think about this loop for more than 2 seconds
+	//Perhaps use integer loop? Shouldn't make a big difference for vectors
 	int i = 0;
 	for (auto vectorIterator = level.begin(); vectorIterator != level.end(); ++vectorIterator)
 	{
 		int n = 0;
 		auto rowVector = *vectorIterator;
 		outInfo.levelEntities.emplace_back();
-		//std::vector<std::unique_ptr<Entity2D>>& rowEntitiesVector = levelEntities[i];
 
 		for (auto it = rowVector.begin(); it != rowVector.end(); ++it)
 		{
@@ -47,7 +46,6 @@ void LevelLoader::SpawnLevelObjects(std::vector<std::vector<int>>& level, GameIn
 			outInfo.levelEntities[i].emplace_back(std::make_unique<Entity2D>());
 			Entity2D& levelEntity = *outInfo.levelEntities[i][n];
 
-			//TODO: tile specific logic here, such as pickup spawning or ghost/player
 			switch (tileEnum)
 			{
 				case Tile::PACMAN:
@@ -80,14 +78,10 @@ void LevelLoader::SpawnLevelObjects(std::vector<std::vector<int>>& level, GameIn
 					level[i][n] = tileNumber;
 					break;
 			}
-
-			//auto a = *levelEntities[i][n];
-
 			++n;
 		}
 		++i;
 	}
-
 }
 
 void LevelLoader::SetSprite1x1(Entity2D& entity, int row, int col, Tile tile)
