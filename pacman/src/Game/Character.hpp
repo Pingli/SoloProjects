@@ -18,6 +18,5 @@ class Character : public Entity2D
 		static bool CanMoveToTile(const GameInfo& info, const sf::Vector2i& tile);
 		static bool CanMoveToTile(const GameInfo& info, const sf::Vector2i& tile, int& outTile);
 		bool IsInIntersection();
-		void MovedOnPickup(const sf::Vector2i& tile);
 		int moveDistance = 1;
 };

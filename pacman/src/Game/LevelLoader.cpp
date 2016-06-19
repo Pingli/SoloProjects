@@ -3,13 +3,13 @@
 #include <string>
 #include <vector>
 #include <sstream>
+#include <memory>
+#include <cassert>
 #include "../Settings.hpp"
 #include "../Entity2D.hpp"
 #include "Player.hpp"
 #include "Ghost.hpp"
-#include <memory>
 #include "Structs.hpp"
-#include <cassert>
 
 
 void LevelLoader::LoadLevel(const std::string& filePath, GameInfo &outInfo)
@@ -49,8 +49,9 @@ void LevelLoader::SpawnLevelObjects(std::vector<std::vector<int>>& level, GameIn
 			switch (tileEnum)
 			{
 				case Tile::PACMAN:
-					SetSprite1x1(levelEntity, i, n, Tile::EMPTY);
 					level[i][n] = (int)Tile::EMPTY;
+					SetSprite1x1(levelEntity, i, n, Tile::EMPTY);
+
 					outInfo.player = std::make_unique<Player>();
 					SetSprite2x2(*outInfo.player, i, n, tileEnum);
 					break;
@@ -59,23 +60,21 @@ void LevelLoader::SpawnLevelObjects(std::vector<std::vector<int>>& level, GameIn
 				case Tile::PINKY:
 				case Tile::CLIDE:
 				{
-					SetSprite1x1(levelEntity, i, n, Tile::EMPTY);
 					level[i][n] = (int)Tile::EMPTY;
+					SetSprite1x1(levelEntity, i, n, Tile::EMPTY);
 
 					outInfo.ghosts.emplace_back(std::make_unique<Ghost>());
 					Ghost& ghost = *outInfo.ghosts.back();
+					ghost.name = tileNumber;
 					SetSprite2x2(ghost, i, n, tileEnum);
 					break;
 				}
 				case Tile::PICKUP:
 				case Tile::PICKUP_BIG:
-					SetSprite1x1(levelEntity, i, n, tileEnum);
-					level[i][n] = tileNumber;
-					break;
 				case Tile::EMPTY:
 				default:
-					SetSprite1x1(levelEntity, i, n, tileEnum);
 					level[i][n] = tileNumber;
+					SetSprite1x1(levelEntity, i, n, tileEnum);
 					break;
 			}
 			++n;

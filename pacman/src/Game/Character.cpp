@@ -48,8 +48,3 @@ bool Character::IsInIntersection()
 void Character::Update(GameInfo& info)
 {
 }
-
-void Character::MovedOnPickup(const sf::Vector2i& tile)
-{
-
-}
