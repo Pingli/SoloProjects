@@ -1,6 +1,8 @@
 #pragma once
 #include <string>
 
+extern const float GAME_UPDATES_PER_SECOND;
+extern const float DELTA_TIME;
 extern const int LEVEL_WIDTH_COUNT;
 extern const int LEVEL_HEIGHT_COUNT;
 extern const int VIDEO_WIDTH;
