@@ -2,11 +2,14 @@
 
 #include "../Entity2D.hpp"
 
-#define Up sf::Vector2i(0,-1)
-#define Down sf::Vector2i(0,1)
-#define Left sf::Vector2i(-1,0)
-#define Right sf::Vector2i(1,0)
-
+enum class Direction
+{
+	dUp,
+	dLeft,
+	dRight,
+	dDown,
+	None
+};
 
 class Character : public Entity2D
 {
@@ -17,6 +20,8 @@ class Character : public Entity2D
 	protected:
 		static bool CanMoveToTile(const GameInfo& info, const sf::Vector2i& tile);
 		static bool CanMoveToTile(const GameInfo& info, const sf::Vector2i& tile, int& outTile);
+		bool CanMoveToTile(const GameInfo& info, const Direction& direction, int& outTile);
+		static sf::Vector2i DirectionEnumToVector2i(const Direction& direction);
 		bool IsInIntersection();
 		int moveDistance = 1;
 };

@@ -40,6 +40,12 @@ bool Character::CanMoveToTile(const GameInfo& info, const sf::Vector2i& tile, in
 	}
 }
 
+bool Character::CanMoveToTile(const GameInfo& info, const Direction& direction, int& outTile)
+{
+	sf::Vector2i dir = DirectionEnumToVector2i(direction);
+	return CanMoveToTile(info, GetCurrentTilePosition() + dir, outTile);
+}
+
 bool Character::IsInIntersection()
 {
 	return false;
@@ -47,4 +53,22 @@ bool Character::IsInIntersection()
 
 void Character::Update(GameInfo& info)
 {
+}
+
+sf::Vector2i Character::DirectionEnumToVector2i(const Direction& direction)
+{
+	switch (direction)
+	{
+		case Direction::dUp:
+			return sf::Vector2i(0, -1);
+		case Direction::dLeft:
+			return sf::Vector2i(-1, 0);
+		case Direction::dRight:
+			return sf::Vector2i(1, 0);
+		case Direction::dDown:
+			return sf::Vector2i(0, 1);
+		case Direction::None:
+		default:
+			return sf::Vector2i(0, 0);
+	}
 }
