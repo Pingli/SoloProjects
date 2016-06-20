@@ -16,7 +16,7 @@ class Character : public Entity2D
 	public:
 		Character();
 		virtual void Update(GameInfo& info) override;
-		void MoveDirection(GameInfo & info, const sf::Vector2i &direction);
+		void MoveToDirection(GameInfo & info, const sf::Vector2i &direction);
 	protected:
 		static bool CanMoveToTile(const GameInfo& info, const sf::Vector2i& tile);
 		static bool CanMoveToTile(const GameInfo& info, const sf::Vector2i& tile, int& outTile);

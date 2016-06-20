@@ -9,7 +9,7 @@ Character::Character()
 	positionOffset.y = TILE_HEIGHT / 2;
 }
 
-void Character::MoveDirection(GameInfo & info, const sf::Vector2i &direction)
+void Character::MoveToDirection(GameInfo & info, const sf::Vector2i &direction)
 {
 	assert(abs(direction.x) + abs(direction.y) <= 1);
 	sf::Vector2i tile = GetCurrentTilePosition();

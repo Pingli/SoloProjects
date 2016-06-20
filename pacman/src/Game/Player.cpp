@@ -34,7 +34,7 @@ void Player::MovePlayer(GameInfo& info)
 	{
 		Tile tile = (Tile)outTile;
 		sf::Vector2i moveToTile = currentTile + moveDir;
-		MoveDirection(info, moveDir);
+		MoveToDirection(info, moveDir);
 		switch (tile)
 		{
 			case Tile::PICKUP:
