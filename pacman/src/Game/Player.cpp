@@ -21,7 +21,7 @@ void Player::MovePlayer(GameInfo& info)
 	sf::Vector2i moveDir(0, 0);
 	int outTile;
 
-	if (CanMoveToTile(info, lastDirectionInput, outTile))
+	if (lastDirectionInput != Direction::None && CanMoveToTile(info, lastDirectionInput, outTile))
 	{
 		currentFacingDirection = lastDirectionInput;
 		moveDir = DirectionEnumToVector2i(lastDirectionInput);
@@ -50,21 +50,25 @@ void Player::PlayerInput(GameInfo& info)
 {
 	sf::Vector2i dir;
 
-	if (Input::GetInstance().OnKeyDown(sf::Keyboard::A))
+	if (Input::GetInstance().OnKey(sf::Keyboard::A))
 	{
-		lastDirectionInput = Direction::dLeft;
+		lastDirectionInput = Direction::Left;
 	}
-	else if (Input::GetInstance().OnKeyDown(sf::Keyboard::D))
+	else if (Input::GetInstance().OnKey(sf::Keyboard::D))
 	{
-		lastDirectionInput = Direction::dRight;
+		lastDirectionInput = Direction::Right;
 	}
-	else if (Input::GetInstance().OnKeyDown(sf::Keyboard::S))
+	else if (Input::GetInstance().OnKey(sf::Keyboard::S))
 	{
-		lastDirectionInput = Direction::dDown;
+		lastDirectionInput = Direction::Down;
 	}
-	else if (Input::GetInstance().OnKeyDown(sf::Keyboard::W))
+	else if (Input::GetInstance().OnKey(sf::Keyboard::W))
 	{
-		lastDirectionInput = Direction::dUp;
+		lastDirectionInput = Direction::Up;
+	}
+	else
+	{
+		lastDirectionInput = Direction::None;
 	}
 
 }
