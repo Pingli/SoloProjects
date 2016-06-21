@@ -25,7 +25,17 @@ bool Character::CanMoveToTile(const GameInfo& info, const sf::Vector2i& tile)
 
 bool Character::CanMoveToTile(const GameInfo& info, const sf::Vector2i& tile, int& outTile)
 {
-	outTile = info.level[tile.y][tile.x];
+	sf::Vector2i tileCopy(tile);
+
+	if (tile.y < 0  || tile.y > info.level.size() - 1)
+	{
+		assert(false);
+		return false;
+	}
+
+	WrapPositionX(tileCopy);
+
+	outTile = info.level[tileCopy.y][tileCopy.x];
 	Tile t = (Tile)outTile;
 
 	switch (t)

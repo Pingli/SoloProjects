@@ -23,6 +23,7 @@ class Entity2D
 		void SetPosition(const float x, const float y);
 		void SetPosition(const sf::Vector2f& pos);
 		void SetPositionToTile(const sf::Vector2i& tile);
+		static void WrapPositionX(sf::Vector2i& tileCopy);
 
 		sf::Vector2f positionOffset;
 		std::string name;

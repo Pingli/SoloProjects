@@ -13,7 +13,10 @@ Entity2D::Entity2D() : positionOffset(3.f, 3.f), name("")
 
 sf::Vector2f Entity2D::TileToPosition(const sf::Vector2i& tile)
 {
-	return sf::Vector2f(tile.x * TILE_WIDTH, tile.y * TILE_HEIGHT);
+	sf::Vector2i tileCopy(tile);
+	WrapPositionX(tileCopy);
+
+	return sf::Vector2f(tileCopy.x * TILE_WIDTH, tileCopy.y * TILE_HEIGHT);
 }
 
 sf::Vector2i Entity2D::PositionToTile(const sf::Vector2f& position)
@@ -115,4 +118,16 @@ void Entity2D::SetPositionToTile(const sf::Vector2i& tile)
 	pos.y = pos.y - (rect.height / 2);
 
 	SetPosition(pos);
+}
+
+void Entity2D::WrapPositionX(sf::Vector2i& tileCopy)
+{
+	if (tileCopy.x < 0)
+	{
+		tileCopy.x = LEVEL_WIDTH_COUNT - 1;
+	}
+	else if (tileCopy.x > LEVEL_WIDTH_COUNT - 1)
+	{
+		tileCopy.x = 0;
+	}
 }
