@@ -67,7 +67,7 @@ int main()
 			// printf and reset timer
 			printf("%i FPS, %f ms/frame\n", numberFrames, 1000.0f / numberFrames);
 			numberFrames = 0;
-			lastTime += 1.0;
+			lastTime += 1.0f;
 		}
 #endif
 
