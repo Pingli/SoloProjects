@@ -44,7 +44,6 @@ int main()
 	sf::Int32 currentTicks = clock.getElapsedTime().asMilliseconds();
 	float prevTicks = currentTicks;
 
-	printf("%f\n", updateInterval);
 
 	while (window.isOpen())
 	{
