@@ -69,7 +69,10 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>$(SolutionDir)..\build\</OutDir>
+    <OutDir>$(SolutionDir)..\build\$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)..\build\$(Configuration)\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -86,7 +89,12 @@
       </IgnoreSpecificDefaultLibraries>
     </Link>
     <PostBuildEvent>
-      <Command>copy $(ProjectDir)..\Frameworks\SFML-2.3.2\bin\*.dll $(OutDir)</Command>
+      <Command>copy "$(ProjectDir)..\Frameworks\SFML-2.3.2\bin\openal32.dll" "$(OutDir)"
+copy "$(ProjectDir)..\Frameworks\SFML-2.3.2\bin\sfml-audio-d-2.dll" "$(OutDir)"
+copy "$(ProjectDir)..\Frameworks\SFML-2.3.2\bin\sfml-graphics-d-2.dll" "$(OutDir)"
+copy "$(ProjectDir)..\Frameworks\SFML-2.3.2\bin\sfml-network-d-2.dll" "$(OutDir)"
+copy "$(ProjectDir)..\Frameworks\SFML-2.3.2\bin\sfml-system-d-2.dll" "$(OutDir)"
+copy "$(ProjectDir)..\Frameworks\SFML-2.3.2\bin\sfml-window-d-2.dll" "$(OutDir)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -113,7 +121,12 @@
       <AdditionalDependencies>flac.lib;freetype.lib;gdi32.lib;jpeg.lib;ogg.lib;openal32.lib;opengl32.lib;sfml-audio-s.lib;sfml-graphics-s.lib;sfml-system-s.lib;sfml-system-s.lib	;sfml-window-s.lib;vorbis.lib;vorbisenc.lib;vorbisfile.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>copy "$(ProjectDir)..\Frameworks\SFML-2.3.2\bin\*.dll" "$(OutDir)"</Command>
+      <Command>copy "$(ProjectDir)..\Frameworks\SFML-2.3.2\bin\openal32.dll" "$(OutDir)"
+copy "$(ProjectDir)..\Frameworks\SFML-2.3.2\bin\sfml-audio-2.dll" "$(OutDir)"
+copy "$(ProjectDir)..\Frameworks\SFML-2.3.2\bin\sfml-graphics-2.dll" "$(OutDir)"
+copy "$(ProjectDir)..\Frameworks\SFML-2.3.2\bin\sfml-network-2.dll" "$(OutDir)"
+copy "$(ProjectDir)..\Frameworks\SFML-2.3.2\bin\sfml-system-2.dll" "$(OutDir)"
+copy "$(ProjectDir)..\Frameworks\SFML-2.3.2\bin\sfml-window-2.dll" "$(OutDir)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
