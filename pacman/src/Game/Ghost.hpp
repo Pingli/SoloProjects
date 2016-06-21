@@ -4,5 +4,6 @@
 
 class Ghost : public Character
 {
-
+	public:
+		virtual void Update(GameInfo& info) override;
 };

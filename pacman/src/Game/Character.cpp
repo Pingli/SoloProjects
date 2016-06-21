@@ -35,19 +35,39 @@ bool Character::CanMoveToTile(const GameInfo& info, const sf::Vector2i& tile, in
 		case Tile::PICKUP_BIG:
 			return true;
 		default:
-			printf("cant move to tile %i\n", t);
 			return false;
 	}
 }
 
-bool Character::CanMoveToTile(const GameInfo& info, const Direction& direction, int& outTile)
+bool Character::CanMoveToTile(const GameInfo& info, const Direction& direction, int& outTile) const
 {
 	sf::Vector2i dir = DirectionEnumToVector2i(direction);
 	return CanMoveToTile(info, GetCurrentTilePosition() + dir, outTile);
 }
 
-bool Character::IsInIntersection()
+bool Character::CanMoveToTile(const GameInfo& info, const Direction& direction) const
 {
+	int outTile;
+	sf::Vector2i dir = DirectionEnumToVector2i(direction);
+	return CanMoveToTile(info, GetCurrentTilePosition() + dir, outTile);
+}
+
+bool Character::IsInIntersection(const GameInfo& info) const
+{
+	//TODO be consistant, should set sizes of all primitive types
+	//Since both forward and backward are counted too, it requires 3 options to consider it an intersection
+	const short numberOfDirections = 3;
+
+	//2 bytes vs 4 bits?
+	unsigned short count = 0;
+	count += CanMoveToTile(info, Direction::Down);
+	count += CanMoveToTile(info, Direction::Left);
+	count += CanMoveToTile(info, Direction::Up);
+	count += CanMoveToTile(info, Direction::Right);
+	if (count >= numberOfDirections)
+	{
+		return true;
+	}
 	return false;
 }
 
