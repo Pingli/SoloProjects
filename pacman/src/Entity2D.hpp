@@ -26,9 +26,9 @@ class Entity2D
 
 		sf::Vector2f positionOffset;
 		std::string name;
+		sf::Sprite sprite;
 	private:
 		static sf::Vector2f TileToPosition(const sf::Vector2i& tile);
 		static sf::Vector2i PositionToTile(const sf::Vector2f& position);
 
-		sf::Sprite sprite;
 };

@@ -2,7 +2,6 @@
 
 #include <vector>
 #include <SFML/System/Vector2.hpp>
-#include <memory>
 
 struct GameInfo;
 enum class Tile;

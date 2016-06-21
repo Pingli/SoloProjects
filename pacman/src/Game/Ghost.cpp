@@ -2,4 +2,5 @@
 
 void Ghost::Update(GameInfo& info)
 {
+
 }

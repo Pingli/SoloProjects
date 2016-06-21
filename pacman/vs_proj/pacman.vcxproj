@@ -135,7 +135,6 @@
     <ClCompile Include="..\src\Game\Game.cpp" />
     <ClCompile Include="..\src\Game\Ghost.cpp" />
     <ClCompile Include="..\src\Game\LevelLoader.cpp" />
-    <ClCompile Include="..\src\Game\Pickup.cpp" />
     <ClCompile Include="..\src\Game\Player.cpp" />
     <ClCompile Include="..\src\Input.cpp" />
     <ClCompile Include="..\src\main.cpp" />
@@ -148,7 +147,6 @@
     <ClInclude Include="..\src\Game\Game.hpp" />
     <ClInclude Include="..\src\Game\Ghost.hpp" />
     <ClInclude Include="..\src\Game\LevelLoader.hpp" />
-    <ClInclude Include="..\src\Game\Pickup.hpp" />
     <ClInclude Include="..\src\Game\Player.hpp" />
     <ClInclude Include="..\src\Game\Structs.hpp" />
     <ClInclude Include="..\src\Input.hpp" />

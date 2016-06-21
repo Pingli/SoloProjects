@@ -31,6 +31,7 @@ void Player::MovePlayer(GameInfo& info)
 		moveDir = DirectionEnumToVector2i(currentFacingDirection);
 	}
 
+	if (currentFacingDirection != Direction::None)
 	{
 		Tile tile = (Tile)outTile;
 		sf::Vector2i moveToTile = currentTile + moveDir;
@@ -48,8 +49,6 @@ void Player::MovePlayer(GameInfo& info)
 
 void Player::PlayerInput(GameInfo& info)
 {
-	sf::Vector2i dir;
-
 	if (Input::GetInstance().OnKey(sf::Keyboard::A))
 	{
 		lastDirectionInput = Direction::Left;
@@ -71,4 +70,13 @@ void Player::PlayerInput(GameInfo& info)
 		lastDirectionInput = Direction::None;
 	}
 
+	if (Input::GetInstance().OnKeyDown(sf::Keyboard::F))
+	{
+		sf::Vector2f a(1.2f, 3.0f);
+		sprite.setPosition(a);
+	}
+	if (Input::GetInstance().OnKeyDown(sf::Keyboard::G))
+	{
+		printf("%f,%f \n", GetSprite().getPosition().x, GetSprite().getPosition().y);
+	}
 }

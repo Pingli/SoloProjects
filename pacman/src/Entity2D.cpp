@@ -70,7 +70,6 @@ void Entity2D::SetSpriteNumber(const int tileNumber)
 void Entity2D::SetTextureFromSpritesheet(const std::string& filePath, const int tileNumber, const sf::Vector2i& dimension)
 {
 	SetTextureFromFile(filePath);
-	sf::Vector2u size = sprite.getTexture()->getSize();
 	sf::IntRect rect;
 
 	SetTextureRectPosition(tileNumber, rect);

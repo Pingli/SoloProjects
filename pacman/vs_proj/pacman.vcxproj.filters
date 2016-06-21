@@ -30,9 +30,6 @@
     <ClCompile Include="..\src\Game\Ghost.cpp">
       <Filter>Game</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Game\Pickup.cpp">
-      <Filter>Game</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\Game\Player.cpp">
       <Filter>Game</Filter>
     </ClCompile>
@@ -63,9 +60,6 @@
       <Filter>Game</Filter>
     </ClInclude>
     <ClInclude Include="..\src\Game\Ghost.hpp">
-      <Filter>Game</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\Game\Pickup.hpp">
       <Filter>Game</Filter>
     </ClInclude>
     <ClInclude Include="..\src\Game\Player.hpp">
