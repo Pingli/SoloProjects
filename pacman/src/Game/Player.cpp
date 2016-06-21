@@ -42,6 +42,7 @@ void Player::MovePlayer(GameInfo& info)
 			case Tile::PICKUP_BIG:
 				info.level[moveToTile.y][moveToTile.x] = (int)Tile::EMPTY;
 				info.levelEntities[moveToTile.y][moveToTile.x]->SetSpriteNumber((int)Tile::EMPTY);
+				--info.pickupCount;
 				break;
 		}
 	}

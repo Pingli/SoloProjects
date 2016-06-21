@@ -7,18 +7,20 @@
 
 Game::Game()
 {
+	info.pickupCount = 0;
 	LevelLoader::LoadLevel(LEVEL_FULL_PATH, info);
 	printf("game init\n");
 }
 
 void Game::Update()
 {
-	//collision checks?
 	//TODO: UI, while at it give credits to this person for the pacman spritesheet. https://github.com/rm-hull/big-bang/tree/master/examples/pacman
 
-
-	UpdateGhosts();
-	info.player->Update(info);
+	if (info.pickupCount != 0)
+	{
+		UpdateGhosts();
+		info.player->Update(info);
+	}
 }
 
 void Game::UpdateGhosts()

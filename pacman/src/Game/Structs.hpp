@@ -12,4 +12,5 @@ struct GameInfo
 	std::vector<std::vector<std::unique_ptr<Entity2D>>> levelEntities;
 	std::unique_ptr<Entity2D> player;
 	std::vector<std::unique_ptr<Ghost>> ghosts;
+	unsigned int pickupCount;
 };
