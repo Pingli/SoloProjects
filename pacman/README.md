@@ -5,3 +5,8 @@ Press build (x86 only)
 #Credits
 Pacman spritesheet
 https://github.com/rm-hull/big-bang/tree/master/examples/pacman
+
+#Controls
+WASD	- Movement
+R		- Restart
+ESC		- Exit
