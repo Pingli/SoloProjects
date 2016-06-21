@@ -5,6 +5,7 @@
 class Game
 {
 	public:
+		void Init();
 		Game();
 		void UpdateGhosts();
 		void Update();
@@ -13,4 +14,5 @@ class Game
 		void DrawSprites(sf::RenderWindow& window);
 	private:
 		GameInfo info;
+		bool exitGame;
 };

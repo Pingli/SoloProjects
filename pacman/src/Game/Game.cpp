@@ -4,16 +4,32 @@
 #include "Ghost.hpp"
 #include "LevelLoader.hpp"
 #include <SFML/Graphics.hpp>
+#include "../Input.hpp"
 
-Game::Game()
+Game::Game() : info(), exitGame(false)
 {
+	Init();
+	printf("game init\n");
+}
+
+void Game::Init()
+{
+	info = GameInfo();
 	info.pickupCount = 0;
 	LevelLoader::LoadLevel(LEVEL_FULL_PATH, info);
-	printf("game init\n");
 }
 
 void Game::Update()
 {
+	if (Input::GetInstance().OnKeyDown(sf::Keyboard::R))
+	{
+		printf("Restarting level\n");
+		Init();
+	}
+	if (Input::GetInstance().OnKeyDown(sf::Keyboard::Escape))
+	{
+		exitGame = true;
+	}
 	//TODO: UI
 
 	if (info.pickupCount != 0)
@@ -33,6 +49,11 @@ void Game::UpdateGhosts()
 
 void Game::DrawSprites(sf::RenderWindow& window)
 {
+	if (exitGame)
+	{
+		window.close();
+	}
+
 	DrawBackgroundAndWalls(window);
 	DrawGhosts(window);
 	window.draw(info.player->GetSprite());
