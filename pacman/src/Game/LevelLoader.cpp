@@ -30,17 +30,17 @@ void LevelLoader::SpawnLevelObjects(std::vector<std::vector<int>>& level, GameIn
 {
 	assert(outInfo.levelEntities.size() == 0);
 
-	//Perhaps use integer loop? Shouldn't make a big difference for vectors
-	int i = 0;
-	for (auto vectorIterator = level.begin(); vectorIterator != level.end(); ++vectorIterator)
+	int i, n;
+	int levelSize = level.size();
+	for (i = 0; i != levelSize; ++i)
 	{
-		int n = 0;
-		auto rowVector = *vectorIterator;
+		auto rowVector = level[i];
+		int rowVectorSize = rowVector.size();
 		outInfo.levelEntities.emplace_back();
 
-		for (auto it = rowVector.begin(); it != rowVector.end(); ++it)
+		for (n = 0; n != rowVectorSize; ++n)
 		{
-			int tileNumber = *it;
+			int tileNumber = rowVector[n];
 			Tile tileEnum = (Tile)tileNumber;
 
 			outInfo.levelEntities[i].emplace_back(std::make_unique<Entity2D>());
@@ -78,9 +78,7 @@ void LevelLoader::SpawnLevelObjects(std::vector<std::vector<int>>& level, GameIn
 					SetSprite1x1(levelEntity, i, n, tileEnum);
 					break;
 			}
-			++n;
 		}
-		++i;
 	}
 }
 

@@ -14,7 +14,7 @@ Game::Game()
 
 void Game::Update()
 {
-	//TODO: UI, while at it give credits to this person for the pacman spritesheet. https://github.com/rm-hull/big-bang/tree/master/examples/pacman
+	//TODO: UI
 
 	if (info.pickupCount != 0)
 	{

@@ -84,7 +84,6 @@ void Entity2D::SetTextureFromSpritesheet(const std::string& filePath, const int 
 void Entity2D::SetTextureFromFile(const std::string& filePath)
 {
 	sf::Texture& texture = AssetCache::GetInstance().AddNewCacheEntry(filePath);
-	//TODO make nice
 	if (texture.getSize().x == 0)
 	{
 		texture.loadFromFile(filePath);

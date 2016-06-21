@@ -17,7 +17,7 @@ class AssetCache
 			auto it = cache.find(key);
 			if (it == cache.end())
 			{
-				cache.insert(std::pair<std::string, sf::Texture>(key, sf::Texture()));
+				cache.emplace(std::pair<std::string, sf::Texture>(key, sf::Texture()));
 			}
 
 			return cache[key];

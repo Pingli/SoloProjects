@@ -1,8 +1,0 @@
-Animation
-interpolate movement
-AI
-gameplay
-	score
-	ghost eat mode
-	lives
-UI
