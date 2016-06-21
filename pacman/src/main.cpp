@@ -41,8 +41,8 @@ int main()
 	sf::Clock clock;
 	constexpr float millisecondModifier = 1000.0f;
 	const float updateInterval = 1.0f / GAME_UPDATES_PER_SECOND * millisecondModifier;
-	sf::Int64 currentTicks = clock.getElapsedTime().asMilliseconds();
-	sf::Int64 prevTicks = currentTicks;
+	sf::Int32 currentTicks = clock.getElapsedTime().asMilliseconds();
+	float prevTicks = currentTicks;
 
 	printf("%f\n", updateInterval);
 

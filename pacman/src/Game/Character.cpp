@@ -5,8 +5,8 @@
 
 Character::Character()
 {
-	positionOffset.x = TILE_WIDTH / 2;
-	positionOffset.y = TILE_HEIGHT / 2;
+	positionOffset.x = TILE_WIDTH / 2.0f;
+	positionOffset.y = TILE_HEIGHT / 2.0f;
 }
 
 void Character::MoveToDirection(GameInfo & info, const sf::Vector2i &direction)
