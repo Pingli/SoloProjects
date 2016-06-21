@@ -64,15 +64,13 @@ bool Character::CanMoveToTile(const GameInfo& info, const Direction& direction) 
 
 bool Character::IsInIntersection(const GameInfo& info) const
 {
-	//Since both forward and backward are counted too, it requires 3 options to consider it an intersection
-	const short numberOfDirections = 3;
-
-	//TODO: 2 bytes vs 4 bits?
-	unsigned short count = 0;
+	const unsigned char numberOfDirections = 3;
+	unsigned char count = 0;
 	count += CanMoveToTile(info, Direction::Down);
 	count += CanMoveToTile(info, Direction::Left);
 	count += CanMoveToTile(info, Direction::Up);
 	count += CanMoveToTile(info, Direction::Right);
+
 	if (count >= numberOfDirections)
 	{
 		return true;
