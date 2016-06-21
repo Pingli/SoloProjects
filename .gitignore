@@ -10,6 +10,8 @@ pacman/vs_proj/Pacman/Pacman.VC.VC.opendb
 pacman/vs_proj/Pacman/Pacman.VC.db
 pacman/vs_proj/Debug/
 pacman/vs_proj/Release/
+pacman/vs_proj/x86/
+pacman/vs_proj/x64/
 pacman/vs_proj/pacman.VC.VC.opendb
 pacman/vs_proj/pacman.VC.db
 pacman/build/
