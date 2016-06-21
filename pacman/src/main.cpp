@@ -44,12 +44,32 @@ int main()
 	sf::Int32 currentTicks = clock.getElapsedTime().asMilliseconds();
 	float prevTicks = currentTicks;
 
+#if DEBUG
+	//Render speed
+	long lastTime = clock.getElapsedTime().asSeconds();
+	int numberFrames = 0;
+#endif
 
 	while (window.isOpen())
 	{
+		//Clear/Render
 		window.clear();
 		game.DrawSprites(window);
 		window.display();
+
+#if DEBUG
+		//Render speed
+		const float reportInterval = 1.0f;
+		long currentTime = clock.getElapsedTime().asSeconds();
+		numberFrames++;
+		if (currentTime - lastTime >= reportInterval)
+		{
+			// printf and reset timer
+			printf("%i FPS, %f ms/frame\n", numberFrames, 1000.0f / numberFrames);
+			numberFrames = 0;
+			lastTime += 1.0;
+		}
+#endif
 
 		currentTicks = clock.getElapsedTime().asMilliseconds();
 		float deltaTimeGame = currentTicks - prevTicks;
