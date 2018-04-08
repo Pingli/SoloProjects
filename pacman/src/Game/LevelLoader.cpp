@@ -65,7 +65,7 @@ void LevelLoader::SpawnLevelObjects(std::vector<std::vector<int>>& level, GameIn
 
 					outInfo.ghosts.emplace_back(std::make_unique<Ghost>());
 					Ghost& ghost = *outInfo.ghosts.back();
-					ghost.name = tileNumber;
+					ghost.name = std::to_string(tileNumber);
 					SetSprite2x2(ghost, i, n, tileEnum);
 					break;
 				}

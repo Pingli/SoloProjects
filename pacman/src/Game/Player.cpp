@@ -73,7 +73,7 @@ void Player::PlayerInput(GameInfo& info)
 
 	if (Input::GetInstance().OnKeyDown(sf::Keyboard::F))
 	{
-		sf::Vector2f a(1.2f, 3.0f);
+		const sf::Vector2f a(1.2f, 3.0f);
 		sprite.setPosition(a);
 	}
 	if (Input::GetInstance().OnKeyDown(sf::Keyboard::G))
