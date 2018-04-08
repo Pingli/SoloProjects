@@ -17,7 +17,7 @@ void Player::Update(GameInfo& info)
 
 void Player::MovePlayer(GameInfo& info)
 {
-	sf::Vector2i currentTile = GetCurrentTilePosition();
+	const sf::Vector2i currentTile = GetCurrentTilePosition();
 	sf::Vector2i moveDir(0, 0);
 	int outTile;
 
@@ -33,8 +33,8 @@ void Player::MovePlayer(GameInfo& info)
 
 	if (currentFacingDirection != Direction::None)
 	{
-		Tile tile = (Tile)outTile;
-		sf::Vector2i moveToTile = currentTile + moveDir;
+		const Tile tile = (Tile)outTile;
+		const sf::Vector2i moveToTile = currentTile + moveDir;
 		MoveToDirection(info, moveDir);
 		switch (tile)
 		{

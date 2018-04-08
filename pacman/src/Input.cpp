@@ -2,10 +2,10 @@
 
 Input::Input()
 {
-	for (int i = 0; i < sf::Keyboard::KeyCount; ++i)
+	for (auto& keyState : keyState)
 	{
-		keyState[i].triggerEvent = KeyEvent::NOTHING;
-		keyState[i].usedInCurrentFrame = false;
+		keyState.triggerEvent = KeyEvent::NOTHING;
+		keyState.usedInCurrentFrame = false;
 	}
 }
 
@@ -26,19 +26,19 @@ bool Input::OnKey(sf::Keyboard::Key key) const
 
 void Input::StepKeyboardState()
 {
-	for (int i = 0; i < sf::Keyboard::KeyCount; ++i)
+	for (auto& keyState : keyState)
 	{
-		if (keyState[i].usedInCurrentFrame)
+		if (keyState.usedInCurrentFrame)
 		{
-			keyState[i].usedInCurrentFrame = false;
+			keyState.usedInCurrentFrame = false;
 
-			if (keyState[i].triggerEvent == KeyEvent::DOWN)
+			if (keyState.triggerEvent == KeyEvent::DOWN)
 			{
-				keyState[i].triggerEvent = KeyEvent::HOLD;
+				keyState.triggerEvent = KeyEvent::HOLD;
 			}
-			else if (keyState[i].triggerEvent == KeyEvent::RELEASE)
+			else if (keyState.triggerEvent == KeyEvent::RELEASE)
 			{
-				keyState[i].triggerEvent = KeyEvent::NOTHING;
+				keyState.triggerEvent = KeyEvent::NOTHING;
 			}
 		}
 	}

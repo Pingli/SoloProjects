@@ -16,25 +16,23 @@ sf::Vector2f Entity2D::TileToPosition(const sf::Vector2i& tile)
 	sf::Vector2i tileCopy(tile);
 	WrapTileX(tileCopy);
 
-	return sf::Vector2f(tileCopy.x * TILE_WIDTH, tileCopy.y * TILE_HEIGHT);
+	return {tileCopy.x * TILE_WIDTH, tileCopy.y * TILE_HEIGHT};
 }
 
 sf::Vector2i Entity2D::PositionToTile(const sf::Vector2f& position)
 {
-	return sf::Vector2i(position.x / TILE_WIDTH, position.y / TILE_HEIGHT);
+	return {position.x / TILE_WIDTH, position.y / TILE_HEIGHT};
 }
 
 void Entity2D::Update(GameInfo& info)
 {
 }
 
-Entity2D::~Entity2D()
-{
-}
+Entity2D::~Entity2D() = default;
 
 sf::Vector2i Entity2D::GetCurrentTilePosition() const
 {
-	sf::IntRect rect = sprite.getTextureRect();
+	const sf::IntRect rect = sprite.getTextureRect();
 	sf::Vector2f pos = sprite.getPosition();
 
 	pos.x = pos.x + (rect.width / 2);
@@ -49,11 +47,11 @@ const sf::Sprite& Entity2D::GetSprite() const
 
 void Entity2D::SetTextureRectPosition(const int tileNumber, sf::IntRect& rect) const
 {
-	sf::Vector2u size = sprite.getTexture()->getSize();
-	int numberOfColumns = size.x / TILE_WIDTH;
-	int numberOfRows = size.y / TILE_HEIGHT;
-	int column = tileNumber % numberOfColumns;
-	int row = (tileNumber) / numberOfColumns;
+	const sf::Vector2u size = sprite.getTexture()->getSize();
+	const int numberOfColumns = size.x / TILE_WIDTH;
+	const int numberOfRows = size.y / TILE_HEIGHT;
+	const int column = tileNumber % numberOfColumns;
+	const int row = (tileNumber) / numberOfColumns;
 
 	assert(row < numberOfRows);
 	assert(column < numberOfColumns);
@@ -100,7 +98,7 @@ void Entity2D::SetTexture(const sf::Texture& texture)
 
 void Entity2D::SetPosition(const float x, const float y)
 {
-	sprite.setPosition(sf::Vector2f(x , y));
+	sprite.setPosition(sf::Vector2f(x, y));
 }
 
 void Entity2D::SetPosition(const sf::Vector2f& pos)
@@ -111,7 +109,7 @@ void Entity2D::SetPosition(const sf::Vector2f& pos)
 void Entity2D::SetPositionToTile(const sf::Vector2i& tile)
 {
 	sf::Vector2f pos = TileToPosition(tile);
-	sf::IntRect rect = sprite.getTextureRect();
+	const sf::IntRect rect = sprite.getTextureRect();
 
 	pos.x = pos.x - (rect.width / 2);
 	pos.y = pos.y - (rect.height / 2);

@@ -6,7 +6,7 @@
 
 void EventPolling(sf::RenderWindow& window, Input& input)
 {
-	sf::Event event;
+	sf::Event event{};
 	while (window.pollEvent(event))
 	{
 		switch (event.type)
@@ -29,8 +29,8 @@ int main()
 	//set up window
 	sf::RenderWindow window(sf::VideoMode(VIDEO_WIDTH, VIDEO_HEIGHT), WINDOW_TITLE);
 	window.setSize(sf::Vector2u(SCREEN_WIDTH, SCREEN_HEIGHT));
-	auto mode = sf::VideoMode::getDesktopMode();
-	window.setPosition(sf::Vector2i((mode.width - SCREEN_WIDTH) / 2, (mode.height - SCREEN_HEIGHT) / 2));
+	const auto desktopMode = sf::VideoMode::getDesktopMode();
+	window.setPosition(sf::Vector2i((desktopMode.width - SCREEN_WIDTH) / 2, (desktopMode.height - SCREEN_HEIGHT) / 2));
 
 
 	Game game;
@@ -60,7 +60,7 @@ int main()
 #if DEBUG
 		//Render speed
 		const float reportInterval = 1.0f;
-		long currentTime = clock.getElapsedTime().asSeconds();
+		const long currentTime = clock.getElapsedTime().asSeconds();
 		numberFrames++;
 		if (currentTime - lastTime >= reportInterval)
 		{
