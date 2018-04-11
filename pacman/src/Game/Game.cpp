@@ -6,7 +6,7 @@
 #include <SFML/Graphics.hpp>
 #include "../Input.hpp"
 
-Game::Game() : info(), exitGame(false)
+Game::Game() : exitGame(false)
 {
 	Init();
 	printf("game init\n");
@@ -41,9 +41,9 @@ void Game::Update()
 
 void Game::UpdateGhosts()
 {
-	for (auto it = info.ghosts.begin(); it != info.ghosts.end(); ++it)
+	for (auto& ghost : info.ghosts)
 	{
-		(*it)->Update(info);
+		ghost->Update(info);
 	}
 }
 
@@ -61,11 +61,11 @@ void Game::DrawSprites(sf::RenderWindow& window)
 
 void Game::DrawBackgroundAndWalls(sf::RenderWindow& window)
 {
-	for (auto it = info.levelEntities.begin(); it != info.levelEntities.end(); ++it)
+	for (auto& levelEntity : info.levelEntities)
 	{
-		for (auto it2 = (*it).begin(); it2 != (*it).end(); ++it2)
+		for (auto& entity2D : levelEntity)
 		{
-			Entity2D& ent = **it2;
+			Entity2D& ent = *entity2D;
 			const sf::Sprite& sprite = ent.GetSprite();
 			window.draw(sprite);
 		}
@@ -74,9 +74,9 @@ void Game::DrawBackgroundAndWalls(sf::RenderWindow& window)
 
 void Game::DrawGhosts(sf::RenderWindow& window)
 {
-	for (auto it = info.ghosts.begin(); it != info.ghosts.end(); ++it)
+	for (auto& ghost : info.ghosts)
 	{
-		Ghost& ent = **it;
+		Ghost& ent = *ghost;
 		const sf::Sprite& sprite = ent.GetSprite();
 		window.draw(sprite);
 	}

@@ -28,20 +28,20 @@ void LevelLoader::SetEntitySpriteAndPosition(sf::Vector2i tilePosition, int tile
 
 void LevelLoader::SpawnLevelObjects(std::vector<std::vector<int>>& level, GameInfo &outInfo)
 {
-	assert(outInfo.levelEntities.size() == 0);
+	assert(outInfo.levelEntities.empty());
 
 	int i, n;
-	int levelSize = level.size();
+	const int levelSize = level.size();
 	for (i = 0; i != levelSize; ++i)
 	{
 		auto rowVector = level[i];
-		int rowVectorSize = rowVector.size();
+		const int rowVectorSize = rowVector.size();
 		outInfo.levelEntities.emplace_back();
 
 		for (n = 0; n != rowVectorSize; ++n)
 		{
 			int tileNumber = rowVector[n];
-			Tile tileEnum = (Tile)tileNumber;
+			const Tile tileEnum = (Tile)tileNumber;
 
 			outInfo.levelEntities[i].emplace_back(std::make_unique<Entity2D>());
 			Entity2D& levelEntity = *outInfo.levelEntities[i][n];
