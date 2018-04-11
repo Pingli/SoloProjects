@@ -1,7 +1,7 @@
 #include "Settings.hpp"
 
 
-extern const float GAME_UPDATES_PER_SECOND = 24.0f;
+extern const float GAME_UPDATES_PER_SECOND = 12.0f;
 extern const float DELTA_TIME = 1 / GAME_UPDATES_PER_SECOND;
 extern const int LEVEL_WIDTH_COUNT = 28;
 extern const int LEVEL_HEIGHT_COUNT = 31;
