@@ -16,12 +16,12 @@ sf::Vector2f Entity2D::TileToPosition(const sf::Vector2i& tile)
 	sf::Vector2i tileCopy(tile);
 	WrapTileX(tileCopy);
 
-	return {tileCopy.x * TILE_WIDTH, tileCopy.y * TILE_HEIGHT};
+	return sf::Vector2f(tileCopy.x * TILE_WIDTH, tileCopy.y * TILE_HEIGHT);
 }
 
 sf::Vector2i Entity2D::PositionToTile(const sf::Vector2f& position)
 {
-	return {position.x / TILE_WIDTH, position.y / TILE_HEIGHT};
+	return sf::Vector2i(position.x / TILE_WIDTH, position.y / TILE_HEIGHT);
 }
 
 void Entity2D::Update(GameInfo& info)
