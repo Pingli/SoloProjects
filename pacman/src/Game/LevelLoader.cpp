@@ -72,6 +72,9 @@ void LevelLoader::SpawnLevelObjects(std::vector<std::vector<int>>& level, GameIn
 				case Tile::PICKUP:
 				case Tile::PICKUP_BIG:
 					++outInfo.pickupCount;
+					level[i][n] = tileNumber;
+					SetSprite1x1(levelEntity, i, n, tileEnum);
+					break;
 				case Tile::EMPTY:
 				default:
 					level[i][n] = tileNumber;
